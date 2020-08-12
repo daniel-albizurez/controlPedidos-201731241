@@ -10,7 +10,22 @@ package controlador;
  * @author DANIEL
  */
 public class ControladorRegistros {
-    public static void registrar(){
+    public static void registrar(String registro){
+        String[] datos = registro.split(",");
         
+        switch (datos[0]){
+            case "PRODUCTO":
+                break;
+            case "CLIENTE":
+                break;
+            case "EMPLEADO":
+                break;
+            case "PEDIDO":
+                break;
+            case "TIENDA":
+                break;
+            case "TIEMPO":
+                break;
+        }
     }
 }
