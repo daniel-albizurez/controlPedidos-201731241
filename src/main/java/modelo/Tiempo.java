@@ -10,11 +10,11 @@ package modelo;
  * @author DANIEL
  */
 public class Tiempo {
-    private int tienda1;
-    private int tienda2;
+    private String tienda1;
+    private String tienda2;
     private int dias;
 
-    public Tiempo(int tienda1, int tienda2, int dias) {
+    public Tiempo(String tienda1, String tienda2, int dias) {
         this.tienda1 = tienda1;
         this.tienda2 = tienda2;
         this.dias = dias;
@@ -23,17 +23,17 @@ public class Tiempo {
     public Tiempo() {
     }
 
-    public int getTienda1() {
+    public String getTienda1() {
         return tienda1;
     }
-    public void setTienda1(int tienda1) {
+    public void setTienda1(String tienda1) {
         this.tienda1 = tienda1;
     }
 
-    public int getTienda2() {
+    public String getTienda2() {
         return tienda2;
     }
-    public void setTienda2(int tienda2) {
+    public void setTienda2(String tienda2) {
         this.tienda2 = tienda2;
     }
 

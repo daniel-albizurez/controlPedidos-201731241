@@ -8,13 +8,9 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
-import java.util.Scanner;
 import javax.swing.JFileChooser;
 import vista.VistaCargaArchivo;
 
@@ -56,6 +52,11 @@ public class ControladorArchivo implements ActionListener {
         } catch (Exception e) {
             System.out.println("Error al leer el archivo");
             e.printStackTrace();
+        }
+        for (String registro : registros) {
+            if (!ControladorRegistros.registrar(registro)) {
+                this.vista.jTxtIgnorados.append(registro);
+            }
         }
     }
 

@@ -36,5 +36,20 @@ public class DaoProducto extends Dao {
         return ControladorDB.insert(TABLA, values);
     }
 
+    @Override
+    public <T> boolean modificar(T modificar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <T> T seleccionar(String condicion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <T> boolean eliminar(T eliminar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

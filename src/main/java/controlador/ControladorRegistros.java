@@ -5,27 +5,39 @@
  */
 package controlador;
 
+import modelo.*;
+
 /**
  *
  * @author DANIEL
  */
 public class ControladorRegistros {
-    public static void registrar(String registro){
+
+    public static boolean registrar(String registro) {
         String[] datos = registro.split(",");
-        
-        switch (datos[0]){
-            case "PRODUCTO":
-                break;
-            case "CLIENTE":
-                break;
-            case "EMPLEADO":
-                break;
-            case "PEDIDO":
-                break;
-            case "TIENDA":
-                break;
-            case "TIEMPO":
-                break;
+        try {
+            switch (datos[0]) {
+                case "PRODUCTO":
+                    Producto nuevo = new Producto(datos[3],
+                            datos[1], datos[2], Double.parseDouble(datos[5]));
+                    Ubicacion nueva = new Ubicacion(nuevo.getCodigo(),
+                            datos[6], Integer.parseInt(datos[4]));
+                    break;
+                case "CLIENTE":
+                    break;
+                case "EMPLEADO":
+                    break;
+                case "PEDIDO":
+                    break;
+                case "TIENDA":
+                    break;
+                case "TIEMPO":
+                    break;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

@@ -12,8 +12,8 @@ package modelo;
 public class Cliente {
     private String nit;
     private String nombre;
-    private long dpi;
-    private int telefono;
+    private String dpi;
+    private String telefono;
     private String direccion;
     private String email;
     private double credito;
@@ -21,7 +21,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nit, String nombre, long dpi, int telefono, String direccion, String email, double credito) {
+    public Cliente(String nit, String nombre, String dpi, String telefono, String direccion, String email, double credito) {
         this.nit = nit;
         this.nombre = nombre;
         this.dpi = dpi;
@@ -31,6 +31,13 @@ public class Cliente {
         this.credito = credito;
     }
 
+    public Cliente(String nit, String nombre, String telefono, double credito) {
+        this.nit = nit;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.credito = credito;
+    }
+            
     public String getNit() {
         return nit;
     }
@@ -45,17 +52,17 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public long getDpi() {
+    public String getDpi() {
         return dpi;
     }
-    public void setDpi(long dpi) {
+    public void setDpi(String dpi) {
         this.dpi = dpi;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

@@ -11,7 +11,7 @@ package modelo;
  */
 public class Tienda {
     
-    private int codigo;
+    private String codigo;
     private String nombre;
     private String direccion;
     private int telefono1;
@@ -19,7 +19,7 @@ public class Tienda {
     private String email;
     private String horario;
 
-    public Tienda(int codigo, String nombre, String direccion, int telefono1, int telefono2, String email, String horario) {
+    public Tienda(String codigo, String nombre, String direccion, int telefono1, int telefono2, String email, String horario) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -29,13 +29,20 @@ public class Tienda {
         this.horario = horario;
     }
 
+    public Tienda(String codigo, String nombre, String direccion, int telefono1) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono1 = telefono1;
+    }
+
     public Tienda() {
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

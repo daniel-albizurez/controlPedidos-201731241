@@ -11,14 +11,14 @@ package modelo;
  */
 public class Producto {
     
-    private int codigo;
+    private String codigo;
     private String nombre;
     private String fabricante;
     private double precio;
     private String descripcion;
     private int garantia;
 
-    public Producto(int codigo, String nombre, String fabricante, double precio, String descripcion, int garantia) {
+    public Producto(String codigo, String nombre, String fabricante, double precio, String descripcion, int garantia) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.fabricante = fabricante;
@@ -27,13 +27,20 @@ public class Producto {
         this.garantia = garantia;
     }
 
+    public Producto(String codigo, String nombre, String fabricante, double precio) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.fabricante = fabricante;
+        this.precio = precio;
+    }
+
     public Producto() {
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

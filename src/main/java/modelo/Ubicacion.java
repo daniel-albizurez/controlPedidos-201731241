@@ -10,11 +10,11 @@ package modelo;
  * @author DANIEL
  */
 public class Ubicacion {
-    private int producto;
-    private int tienda;
+    private String producto;
+    private String tienda;
     private int cantidad;
 
-    public Ubicacion(int producto, int tienda, int cantidad) {
+    public Ubicacion(String producto, String tienda, int cantidad) {
         this.producto = producto;
         this.tienda = tienda;
         this.cantidad = cantidad;
@@ -23,17 +23,17 @@ public class Ubicacion {
     public Ubicacion() {
     }
 
-    public int getProducto() {
+    public String getProducto() {
         return producto;
     }
-    public void setProducto(int producto) {
+    public void setProducto(String producto) {
         this.producto = producto;
     }
 
-    public int getTienda() {
+    public String getTienda() {
         return tienda;
     }
-    public void setTienda(int tienda) {
+    public void setTienda(String tienda) {
         this.tienda = tienda;
     }
 
