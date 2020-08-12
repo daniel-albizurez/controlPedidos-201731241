@@ -55,7 +55,7 @@ public class ControladorArchivo implements ActionListener {
         }
         for (String registro : registros) {
             if (!ControladorRegistros.registrar(registro)) {
-                this.vista.jTxtIgnorados.append(registro);
+                this.vista.jTxtIgnorados.append(registro + "\n");
             }
         }
     }

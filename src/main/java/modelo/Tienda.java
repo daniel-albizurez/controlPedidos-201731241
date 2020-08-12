@@ -14,12 +14,12 @@ public class Tienda {
     private String codigo;
     private String nombre;
     private String direccion;
-    private int telefono1;
-    private int telefono2;
+    private String telefono1;
+    private String telefono2;
     private String email;
     private String horario;
 
-    public Tienda(String codigo, String nombre, String direccion, int telefono1, int telefono2, String email, String horario) {
+    public Tienda(String codigo, String nombre, String direccion, String telefono1, String telefono2, String email, String horario) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -29,7 +29,7 @@ public class Tienda {
         this.horario = horario;
     }
 
-    public Tienda(String codigo, String nombre, String direccion, int telefono1) {
+    public Tienda(String codigo, String nombre, String direccion, String telefono1) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -60,17 +60,17 @@ public class Tienda {
         this.direccion = direccion;
     }
 
-    public int getTelefono1() {
+    public String getTelefono1() {
         return telefono1;
     }
-    public void setTelefono1(int telefono1) {
+    public void setTelefono1(String telefono1) {
         this.telefono1 = telefono1;
     }
 
-    public int getTelefono2() {
+    public String getTelefono2() {
         return telefono2;
     }
-    public void setTelefono2(int telefono2) {
+    public void setTelefono2(String telefono2) {
         this.telefono2 = telefono2;
     }
 

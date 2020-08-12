@@ -15,29 +15,36 @@ public class ControladorRegistros {
 
     public static boolean registrar(String registro) {
         String[] datos = registro.split(",");
+        Boolean exitoso = true;
         try {
-            switch (datos[0]) {
-                case "PRODUCTO":
-                    Producto nuevo = new Producto(datos[3],
+            switch (datos[0] + datos.length) {
+                case "PRODUCTO7":
+                    Producto nuevoProducto = new Producto(datos[3],
                             datos[1], datos[2], Double.parseDouble(datos[5]));
-                    Ubicacion nueva = new Ubicacion(nuevo.getCodigo(),
+                    Ubicacion nuevaUbicacion = new Ubicacion(nuevoProducto.getCodigo(),
                             datos[6], Integer.parseInt(datos[4]));
                     break;
-                case "CLIENTE":
+                case "CLIENTE5":
+                    Cliente nuevoCliente = new Cliente(datos[2], datos[1], datos[3], Double.parseDouble(datos[4])); 
                     break;
-                case "EMPLEADO":
+                case "EMPLEADO5":
+                    Empleado nuevoEmpleado = new Empleado(Integer.parseInt(datos[2]), datos[4], datos[1], datos[3]);
                     break;
                 case "PEDIDO":
                     break;
-                case "TIENDA":
+                case "TIENDA5":
+                    Tienda nuevaTienda = new Tienda(datos[3], datos[1], datos[2], datos[4]);
                     break;
-                case "TIEMPO":
+                case "TIEMPO4":
+                    Tiempo nuevoTiempo = new Tiempo(datos[1], datos[2], Integer.parseInt(datos[3]));
                     break;
+                default:
+                    exitoso = false;
             }
-            return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            System.err.println(e.getMessage());
+            exitoso = false;
         }
+        return exitoso;
     }
 }
