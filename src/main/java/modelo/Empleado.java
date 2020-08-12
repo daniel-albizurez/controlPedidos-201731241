@@ -86,6 +86,10 @@ public class Empleado {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Empleado:" + " codigo = " + codigo + ", dpi = " + dpi + ", nombre = " + nombre + ", nit = " + nit + ", telefono = " + telefono + ", direccion = " + direccion + ", email = " + email;
+    }
     
 }

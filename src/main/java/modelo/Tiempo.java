@@ -43,5 +43,10 @@ public class Tiempo {
     public void setDias(int dias) {
         this.dias = dias;
     }
+
+    @Override
+    public String toString() {
+        return "Tiempo:" + " tienda1 = " + tienda1 + ", tienda2 = " + tienda2 + ", dias = " + dias;
+    }
     
 }

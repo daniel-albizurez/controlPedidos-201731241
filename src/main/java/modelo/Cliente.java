@@ -86,5 +86,9 @@ public class Cliente {
     public void setCredito(double credito) {
         this.credito = credito;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Cliente:" + " nit = " + nit + ", nombre = " + nombre + ", dpi = " + dpi + ", telefono = " + telefono + ", direccion = " + direccion + ", email = " + email + ", credito = " + credito;
+    }
 }

@@ -43,5 +43,10 @@ public class Ubicacion {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    @Override
+    public String toString() {
+        return "Ubicacion:" + " producto = " + producto + ", tienda = " + tienda + ", cantidad = " + cantidad;
+    }
     
 }

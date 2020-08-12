@@ -87,5 +87,10 @@ public class Tienda {
     public void setHorario(String horario) {
         this.horario = horario;
     }
+
+    @Override
+    public String toString() {
+        return "Tienda: " + " codigo = " + codigo + ", nombre = " + nombre + ", direccion = " + direccion + ", telefono1 = " + telefono1 + ", telefono2 = " + telefono2 + ", email = " + email + ", horario = " + horario;
+    }
     
 }

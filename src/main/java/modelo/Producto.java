@@ -78,5 +78,10 @@ public class Producto {
     public void setGarantia(int garantia) {
         this.garantia = garantia;
     }
+
+    @Override
+    public String toString() {
+        return "Producto:" + " codigo = " + codigo + ", nombre = " + nombre + ", fabricante = " + fabricante + ", precio = " + precio + ", descripcion = " + descripcion + ", garantia = " + garantia;
+    }
     
 }
