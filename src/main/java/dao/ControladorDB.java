@@ -18,7 +18,7 @@ import mainTest.ConexionBBDD;
 public class ControladorDB {
 
     private static ConexionBBDD conexion = new ConexionBBDD();
-
+    //TODO: Cambiar Insert para recibir que campos se van a insertar
     private static final String INSERT = "INSERT INTO %s VALUES (%s)";
     private static final String SELECT = "SELECT %s FROM %s";
     private static final String UPDATE = "UPDATE %s SET %s";
