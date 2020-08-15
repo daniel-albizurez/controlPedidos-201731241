@@ -8,30 +8,24 @@ package controlador;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import reportes.VistaReporte;
+import mainTest.VistaReporte;
 
 /**
  *
  * @author DANIEL
  */
 public class ControladorTabla {
-    VistaReporte vista = new VistaReporte();
-
-    public ControladorTabla(String[] columnas, ArrayList<String[]> filas) {
-        vista.jTblReporte.setModel(llenar(columnas, filas));
-        vista.jTblReporte.setAutoCreateRowSorter(true);
-        vista.setVisible(true);
+    
+    public  void filtrar(JTable reporte,String  busqueda, int ... columns){
+       ((TableRowSorter<TableModel>) reporte.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda,columns));
     }
     
-    public  void filtrar(String  busqueda, int ... columns){
-       ((TableRowSorter<TableModel>) vista.jTblReporte.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda,columns));
-    }
-    
-    public static DefaultTableModel llenar(String[] columnas, ArrayList<String[]> filas){
+    public static void llenar(JTable reporte,String[] columnas, ArrayList<String[]> filas){
         DefaultTableModel modelo = new DefaultTableModel();
         for (String columna : columnas) {
             modelo.addColumn(columna);
@@ -39,6 +33,6 @@ public class ControladorTabla {
         for (String[] fila : filas) {
             modelo.addRow(fila);
         }
-        return modelo;
+        reporte.setModel(modelo); 
     }
 }
