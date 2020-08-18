@@ -21,7 +21,7 @@ import mainTest.VistaReporte;
  */
 public class ControladorTabla {
     
-    public  void filtrar(JTable reporte,String  busqueda, int ... columns){
+    public static void filtrar(JTable reporte,String  busqueda, int ... columns){
        ((TableRowSorter<TableModel>) reporte.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda,columns));
     }
     
