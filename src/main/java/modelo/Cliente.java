@@ -6,7 +6,7 @@
 package modelo;
 
 /**
- *
+ * Clase para almacenar las tuplas recolectadas de la tabla Cliente de la BD
  * @author DANIEL
  */
 public class Cliente {

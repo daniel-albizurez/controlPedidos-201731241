@@ -6,7 +6,7 @@
 package modelo;
 
 /**
- *
+ * Clase para almacenar las tuplas recolectadas de la tabla Producto de la BD
  * @author DANIEL
  */
 public class Producto {

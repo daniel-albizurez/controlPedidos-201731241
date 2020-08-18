@@ -6,7 +6,8 @@
 package modelo;
 
 /**
- *
+ * Clase para almacenar las tuplas recolectadas de la tabla Ubicación de la BD
+ * La cual almacena la relación entre tienda y productos
  * @author DANIEL
  */
 public class Ubicacion {

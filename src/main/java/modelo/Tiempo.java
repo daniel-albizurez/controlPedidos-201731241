@@ -6,7 +6,8 @@
 package modelo;
 
 /**
- *
+ * Clase para almacenar las tuplas recolectadas de la tabla Tiempo de la BD
+ * La cual almacena el tiempo de envio entre dos tiendas
  * @author DANIEL
  */
 public class Tiempo {
