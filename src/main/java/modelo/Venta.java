@@ -11,25 +11,27 @@ package modelo;
  */
 public class Venta {
     //NOT NULL
-    private int coidog;
+    private int codigo;
+    private String tienda;
     private String cliente;
+    private String fecha;
     private double total;
 
     public Venta() {
     }
 
     public Venta(int coidog, String cliente, double total) {
-        this.coidog = coidog;
+        this.codigo = coidog;
         this.cliente = cliente;
         this.total = total;
     }
 
-    public int getCoidog() {
-        return coidog;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCoidog(int coidog) {
-        this.coidog = coidog;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getCliente() {

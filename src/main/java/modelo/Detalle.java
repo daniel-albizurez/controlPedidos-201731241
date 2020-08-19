@@ -13,7 +13,7 @@ package modelo;
 public class Detalle {
         //NOT NULL
     private int referencia; //El codigo del pedido o venta al que referencia este detalle
-    private String articulo;
+    private String producto;
     private int cantidad;
 
     public Detalle() {
@@ -21,7 +21,7 @@ public class Detalle {
 
     public Detalle(int pedido, String articulo, int cantidad) {
         this.referencia = pedido;
-        this.articulo = articulo;
+        this.producto = articulo;
         this.cantidad = cantidad;
     }
 
@@ -33,12 +33,12 @@ public class Detalle {
         this.referencia = referencia;
     }
 
-    public String getArticulo() {
-        return articulo;
+    public String getProducto() {
+        return producto;
     }
 
-    public void setArticulo(String articulo) {
-        this.articulo = articulo;
+    public void setProducto(String producto) {
+        this.producto = producto;
     }
 
     public int getCantidad() {

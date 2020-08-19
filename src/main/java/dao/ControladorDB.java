@@ -63,7 +63,7 @@ public class ControladorDB {
         try {
             conectar(false);
             //Se genera un PreparedStatement específico para insertar un nuevo registro
-            PreparedStatement preparedInsert = conexion.getMiConexion().prepareStatement(sql);
+            PreparedStatement preparedInsert = conexion.getConexion().prepareStatement(sql);
             //Se envía el nuevo registro a la BD
             preparedInsert.executeUpdate();
             System.out.println("Correcto " + sql);
@@ -99,7 +99,7 @@ public class ControladorDB {
         try {
             conectar(false);
             //Se genera un PreparedStatement específico para seleccionar los registros
-            PreparedStatement preparedSelect = conexion.getMiConexion().prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            PreparedStatement preparedSelect = conexion.getConexion().prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             //Si la consulta es exitosa se reciben las tuplas recuperadas
             if (preparedSelect.execute()) result = preparedSelect.executeQuery();
             //De lo contratio se retorna un valor nulo
@@ -186,7 +186,7 @@ public class ControladorDB {
         try {
             conectar(false);
             //Se genera un PreparedStatement específico para actualizar un registro existente
-              PreparedStatement preparedInsert = conexion.getMiConexion().prepareStatement(sql);
+              PreparedStatement preparedInsert = conexion.getConexion().prepareStatement(sql);
               //Se actualiza el registro en la BD
               preparedInsert.executeUpdate();
               System.out.println("Correcto " + sql);
@@ -218,7 +218,7 @@ public class ControladorDB {
         try {
             conectar(false);
             //Se genera un PreparedStatement específico para eliminar un registro existente
-            PreparedStatement preparedDelete = conexion.getMiConexion().prepareStatement(sql);
+            PreparedStatement preparedDelete = conexion.getConexion().prepareStatement(sql);
               //Se elimina el registro en la BD
             preparedDelete.executeUpdate();
             System.out.println("Correcto " + sql);

@@ -10,13 +10,15 @@ package modelo;
  * @author DANIEL
  */
 public class Empleado {
+    //NOT NULL
     private int codigo;
     private String dpi;
     private String nombre;
-    private String nit;
     private String telefono;
     private String direccion;
     private String email;
+    //NULL
+    private String nit;
 
     public Empleado(int codigo, String dpi, String nombre, String nit, String telefono, String direccion, String email) {
         this.codigo = codigo;
