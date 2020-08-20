@@ -5,6 +5,8 @@
  */
 package dao;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import modelo.Producto;
 
 /**
@@ -20,6 +22,11 @@ public class DaoProducto extends Dao {
     private final String PRECIO = "precio";
     private final String DESCRIPCION = "descripcion";
     private final String GARANTIA = "garantia";
+
+    public DaoProducto(Connection connection) {
+        super(connection);
+    }
+    
     
     
     @Override
@@ -33,7 +40,7 @@ public class DaoProducto extends Dao {
                 COMILLA + nuevo.getDescripcion() + COMILLA + COMA +
                 nuevo.getGarantia()
                 ;
-        return ControladorDB.insert(TABLA, values);
+        return true;
     }
 
     @Override
@@ -48,6 +55,11 @@ public class DaoProducto extends Dao {
 
     @Override
     public <T> boolean eliminar(T eliminar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<String[]> buscarVarios(String campos, String condicion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -6,6 +6,8 @@
 package dao;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  * Clase que almacena constantes  que utilizan todos los Dao por igual
@@ -20,6 +22,12 @@ public abstract class Dao{
     public final static String COMILLA = "\'";
     public final static String COMA = ",";
     public final static String AND = "AND";
+    
+    protected ControladorDB controladorDb; 
+    
+    public Dao(Connection connection) {
+        this.controladorDb = new ControladorDB(connection);
+    }
     
     /**
      * Método utilizado para almacenar insertar una 
@@ -36,4 +44,5 @@ public abstract class Dao{
    
     public abstract <T> boolean eliminar(T eliminar);
     
+    public abstract ArrayList<String[]> buscarVarios(String campos, String condicion);
 }

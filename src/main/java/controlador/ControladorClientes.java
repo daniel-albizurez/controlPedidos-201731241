@@ -5,10 +5,13 @@
  */
 package controlador;
 
+import dao.DaoClientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import modelo.Cliente;
 import reportes.ReporteClientes;
 import vista.VistaCliente;
 
@@ -22,8 +25,10 @@ public class ControladorClientes implements ActionListener {
 
     private VistaCliente vista;
     private ReporteClientes reporte;
-
-    public ControladorClientes() {
+    private DaoClientes dao;
+    private Cliente modelo;
+    
+    public ControladorClientes(Connection connection) {
         this.vista = new VistaCliente();
         this.vista.setVisible(true);
         this.vista.jBtnAgregar.addActionListener(this);
@@ -37,23 +42,31 @@ public class ControladorClientes implements ActionListener {
         reporte.jTxtFiltroNit.addActionListener(this);
         reporte.jTxtFiltroNombre.addActionListener(this);
 
+        this.dao = new DaoClientes(connection);
     }
 
     @Override
     public void actionPerformed(ActionEvent ev) {
         //Control eventos interfaz principal
-        if (ev.getSource() == vista.jBtnVerClientes) {
+        //TODO: Terminar Clientes
+        if (ev.getSource() == vista.jBtnAgregar) {
+            modelo = new Cliente();
+            modelo.setNit(vista.jTxtNit.getText());
+            modelo.setNombre(vista.jTxtNombre.getText());
+            modelo.setTelefono(vista.jTxtTel.getText());
+            modelo.setDpi(vista.jTxtDpi.getText());
+            modelo.setDireccion(vista.jTxtDireccion.getText());
+            modelo.setEmail(vista.jTxtEmail.getText());
+            modelo.setCredito(Double.valueOf(vista.jTxtCredito.getText()));
+            
+            dao.agregar(modelo);
+            
+        } else if (ev.getSource() == vista.jBtnVerClientes) {
             reporte.setVisible(true);
             ControladorTabla.llenar(reporte.jTblClientes,
-                    /*Dao.TODOS.split(,)*/ new String[]{"Nombre", "Fabricante", "Garantia"},
-                    /*Dao.select(*)*/
-                    new ArrayList<>(Arrays.asList(
-                            new String[]{"Batarang", "ToyMaker", "4"},
-                            new String[]{"Beast", "Tyco", "5"},
-                            new String[]{"Foquito", "PeraLoca"},
-                            new String[]{"Hueso", "AnimalPlanet", "6"}
-                    )
-                    ));
+                    dao.ALL.split(","),
+                    dao.buscarVarios("*", "")
+                    );
         }
 
         //Control eventos reporte
@@ -62,11 +75,13 @@ public class ControladorClientes implements ActionListener {
             if (ev.getSource() == reporte.jTxtFiltroNit) {
                 ControladorTabla.filtrar(reporte.jTblClientes,
                         reporte.jTxtFiltroNit.getText(),
-                        1);
+                        0);
+                        reporte.jTxtFiltroNombre.setText("");
             } else if (ev.getSource() == reporte.jTxtFiltroNombre) {
                 ControladorTabla.filtrar(reporte.jTblClientes,
                         reporte.jTxtFiltroNombre.getText(),
-                        0);
+                        1);
+                        reporte.jTxtFiltroNit.setText("");
             }
 
         }
