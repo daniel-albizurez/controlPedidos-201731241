@@ -29,41 +29,72 @@ public class DaoClientes extends Dao {
     private final String CREDITO = "credito";
     private final String NULL = DPI + COMA + DIRECCION + COMA + EMAIL + COMA + CREDITO;
     
+    private final String TEXTO = COMILLA + "%s" + COMILLA ;
+    private final String ASIGNACION = "%s" + IGUAL + "%s";
+    
     public final String ALL = NOT_NULL + COMA + NULL;
 
-    public DaoClientes(Connection conection) {
-        super(conection);
+    public DaoClientes(Connection connection) {
+        super(connection);
     }
 
     @Override
-    public <T> boolean agregar(T agregar) {
-        Cliente nuevo;
-        nuevo = (Cliente) agregar;
-        String valores = COMILLA + nuevo.getNit() + COMILLA + COMA + 
-                COMILLA + nuevo.getNombre() + COMILLA + COMA +
-                COMILLA + nuevo.getTelefono() + COMILLA
-//                + COMA +
-//                COMILLA + nuevo.getDpi() + COMILLA + COMA +
-//                COMILLA + nuevo.getDireccion()+ COMILLA + COMA +
-//                COMILLA + nuevo.getEmail()+ COMILLA + COMA +
-//                nuevo.getCredito()
+    public <T> boolean agregar(T agregar, boolean noObligatorios) {
+        Cliente nuevo = (Cliente) agregar;
+        String campos = (noObligatorios) ? ALL : NOT_NULL;
+        String valores =
+                String.format(TEXTO, nuevo.getNit())        + COMA +
+                String.format(TEXTO, nuevo.getNombre())     + COMA +
+                String.format(TEXTO, nuevo.getTelefono());
+                
+                if (noObligatorios)
+                valores +=                                  COMA +
+                String.format(TEXTO, nuevo.getDpi())      + COMA +
+                String.format(TEXTO, nuevo.getDireccion())+ COMA +
+                String.format(TEXTO, nuevo.getEmail())    + COMA +
+                nuevo.getCredito()
                 ;
-        return this.controladorDb.insert(TABLA, NOT_NULL, valores);
+        return this.controladorDb.insert(TABLA, campos, valores);
     }
 
     @Override
     public <T> boolean modificar(T modificar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cliente modificado = (Cliente) modificar;
+        String pk = String.format(ASIGNACION, 
+                        NIT,
+                        String.format(TEXTO, modificado.getNit()));
+        String valores = pk +
+                String.format(ASIGNACION, NOMBRE, String.format(TEXTO, modificado.getNombre())) + COMA +
+                String.format(ASIGNACION, TELEFONO, String.format(TEXTO, modificado.getTelefono())) + COMA +
+                String.format(ASIGNACION, DPI, String.format(TEXTO, modificado.getDpi())) + COMA +
+                String.format(ASIGNACION, DIRECCION, String.format(TEXTO, modificado.getDireccion())) + COMA +
+                String.format(ASIGNACION, EMAIL, String.format(TEXTO, modificado.getEmail())) + COMA +
+                String.format(ASIGNACION, CREDITO, modificado.getCredito())
+                ;
+        return controladorDb.update(TABLA, valores, pk);
     }
-
-    @Override
-    public <T> T seleccionar(String condicion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Cliente seleccionar(String campoCondicion, String valorCondicion) {
+        String condicion = String.format(ASIGNACION,
+                campoCondicion.replace(IGUAL, ""),
+                valorCondicion.replace(IGUAL, ""));
+        Cliente recuperado = new Cliente();
+        String datos[] = buscarVarios(ALL, condicion).get(0);
+        recuperado.setNit(datos[0]);
+        recuperado.setNombre(datos[1]);
+        recuperado.setTelefono(datos[2]);
+        recuperado.setDpi(datos[3]);
+        recuperado.setDireccion(datos[4]);
+        recuperado.setEmail(datos[5]);
+        recuperado.setCredito(Double.parseDouble(datos[6]));
+       
+       return recuperado;
     }
 
     @Override
     public <T> boolean eliminar(T eliminar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cliente eliminado = (Cliente) eliminar;
+        return controladorDb.delete(TABLA, String.format(ASIGNACION, NIT, eliminado.getNit()));
     }
 
     @Override

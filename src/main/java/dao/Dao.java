@@ -34,13 +34,12 @@ public abstract class Dao{
      * tupla en la base de datos
      * @param <T> Tipo de entidad a insertar
      * @param agregar El objeto con los datos a agregar en la BD
+     * @param noObligatorios Boolean para saber cuantos campos se van a insertar
      * @return Verdadero si no se encuentran errores, falso de lo contrario
      */
-    public abstract <T> boolean agregar(T agregar);
+    public abstract <T> boolean agregar(T agregar, boolean noObligatorios);
     
     public abstract <T> boolean modificar(T modificar);
-   
-    public abstract <T> T seleccionar(String condicion);
    
     public abstract <T> boolean eliminar(T eliminar);
     
