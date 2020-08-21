@@ -9,8 +9,6 @@ import dao.DaoClientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 import reportes.ReporteClientes;
@@ -37,6 +35,8 @@ public class ControladorClientes implements ActionListener {
         this.vista.jBtnModificar.addActionListener(this);
         this.vista.jBtnEliminar.addActionListener(this);
         this.vista.jBtnVerClientes.addActionListener(this);
+        
+        this.vista.jTxtCredito.setText("0.00");
 
         reporte = new ReporteClientes();
         reporte.jTblClientes.setAutoCreateRowSorter(true);

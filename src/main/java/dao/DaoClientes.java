@@ -38,15 +38,15 @@ public class DaoClientes extends Dao<Cliente> {
     @Override
     public String insertar(Cliente obj, boolean noObligatorios){
         String valores = 
-                String.format(TEXTO, obj.getNit()) + COMA
-                + String.format(TEXTO, obj.getNombre()) + COMA
-                + String.format(TEXTO, obj.getTelefono());
+                setTexto(obj.getNit()) + COMA
+                + setTexto(obj.getNombre()) + COMA
+                + setTexto(obj.getTelefono());
 
         if (noObligatorios) {
             valores += COMA
-                    + String.format(TEXTO, obj.getDpi()) + COMA
-                    + String.format(TEXTO, obj.getDireccion()) + COMA
-                    + String.format(TEXTO, obj.getEmail()) + COMA
+                    + setTexto(obj.getDpi()) + COMA
+                    + setTexto(obj.getDireccion()) + COMA
+                    + setTexto(obj.getEmail()) + COMA
                     + obj.getCredito();
         }
         return valores;

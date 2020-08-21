@@ -33,7 +33,39 @@ public abstract class Dao<T> {
     public Dao(Connection connection) {
         this.controladorDb = new ControladorDB(connection);
     }
+    
+    //Métodos abstractos
+    
+    /**
+     * Método que retorna un String conteniendo el nombre de la tabla
+     * implementada en el dao específico
+     * @return
+     */
+    public abstract String tabla();
+    
+    /**
+     * Método que genera un String la llave primaria de una tupla con la estructura
+     * primaryKey = valor
+     * @param obj Una instancia de la entidad con la que se está trabajando
+     * que contiene el valor de la llave primaria
+     * @return El String generado
+     */
+    public abstract String primaryKey(T obj);
+    
+    /**
+     * Método que retorna un String que contiene los campos Obligatorios
+     * de la tabla, separados por comas
+     * @return
+     */
+    public abstract String camposObligatorios();
 
+    /**
+     * Método que retorna un String conteniendo todos los campos 
+     * de la tabla específica a la implementación
+     * @return
+     */
+    public abstract String todos();
+    
     /**
      * Método que genera un String que contiene la estructura 
      * de los valores a insertar en una tabla
@@ -48,13 +80,6 @@ public abstract class Dao<T> {
     public abstract String insertar(T obj, boolean noObligatorios);
     
     /**
-     * Método que retorna un String que contiene los campos Obligatorios
-     * de la tabla, separados por comas
-     * @return
-     */
-    public abstract String camposObligatorios();
-    
-    /**
      * Método que genera un String que contiene la estructura
      * para actualizar los campos de una tabla
      * campo1 = valor1, campo2 = 'valor2'
@@ -64,20 +89,6 @@ public abstract class Dao<T> {
     public abstract String setCamposYValores(T obj);
     
     /**
-     * Método que retorna un String conteniendo el nombre de la tabla
-     * implementada en el dao específico
-     * @return
-     */
-    public abstract String tabla();
-
-    /**
-     * Método que retorna un String conteniendo todos los campos 
-     * de la tabla específica a la implementación
-     * @return
-     */
-    public abstract String todos();
-
-    /**
      * Método que genera una instancia del pojo específio 
      * @param datos Arreglo de tipo String que contiene los datos de 
      * una tupla recuperada de la BD
@@ -85,14 +96,7 @@ public abstract class Dao<T> {
      */
     public abstract T generarModelo(String[] datos);
     
-    /**
-     * Método que genera un String la llave primaria de una tupla con la estructura
-     * primaryKey = valor
-     * @param obj Una instancia de la entidad con la que se está trabajando
-     * que contiene el valor de la llave primaria
-     * @return El String generado
-     */
-    public abstract String primaryKey(T obj);
+    //Métodos no abstractos
     
     /**
      * Método utilizado para insertar una nueva tupla en la BD
