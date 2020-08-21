@@ -30,7 +30,7 @@ public class DaoProducto extends Dao {
     
     
     @Override
-    public <T> boolean agregar(T agregar) {
+    public <T> boolean agregar(T agregar, boolean noObligatorios) {
         String values;
         Producto nuevo = (Producto) agregar;
         values = nuevo.getCodigo() + COMA +
@@ -48,7 +48,6 @@ public class DaoProducto extends Dao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public <T> T seleccionar(String condicion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

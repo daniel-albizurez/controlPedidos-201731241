@@ -33,7 +33,7 @@ public class ReporteClientes extends javax.swing.JFrame {
         jTxtFiltroNit = new javax.swing.JTextField();
         jTxtFiltroNombre = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

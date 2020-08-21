@@ -23,6 +23,9 @@ public abstract class Dao{
     public final static String COMA = ",";
     public final static String AND = "AND";
     
+    protected final String TEXTO = COMILLA + "%s" + COMILLA ;
+    protected final String ASIGNACION = "%s" + IGUAL + "%s";
+    
     protected ControladorDB controladorDb; 
     
     public Dao(Connection connection) {

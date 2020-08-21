@@ -68,10 +68,10 @@ public class ControladorDB {
             PreparedStatement preparedInsert = connection.prepareStatement(sql);
             //Se envía el nuevo registro a la BD
             preparedInsert.executeUpdate();
-            System.out.println("Correcto " + sql);
+//            System.out.println("Correcto " + sql);
         } catch (SQLException e) {
-            System.out.println("Incorrecto " + sql
-            + e.getMessage());
+            System.out.println(/*"Incorrecto " + sql
+            +*/ e.getMessage());
 //            e.printStackTrace();
             return false;
         }
@@ -103,14 +103,13 @@ public class ControladorDB {
             //Si la consulta es exitosa se reciben las tuplas recuperadas
             if (preparedSelect.execute()) result = preparedSelect.executeQuery();
             //De lo contratio se retorna un valor nulo
-            System.out.println("Correcto " + sql);
+//            System.out.println("Correcto " + sql);
             return result; 
         } catch (SQLException ex) {
-            System.out.println("Incorecto " + sql);
-           ex.printStackTrace();
-        } finally {
-//           conectar(true);
-        }
+//            System.out.println("Incorecto " + sql);
+//           ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        } 
         return null;
     }
 /**
@@ -127,7 +126,6 @@ public class ControladorDB {
         int size = 0;
         int columns = 0;
         try {
-//            conectar(false);
             //Si el ResultSet recuperado es válido se convierte cada fila en un vecto
             if (result != null) {
                 //Nos movemos al final del resultset para poder conocer el tamaño del ResultSet
@@ -158,7 +156,8 @@ public class ControladorDB {
             
             return resultado; 
         } catch (SQLException ex) {
-           ex.printStackTrace();
+//           ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
         return null;
     }
@@ -186,10 +185,11 @@ public class ControladorDB {
               PreparedStatement preparedInsert = connection.prepareStatement(sql);
               //Se actualiza el registro en la BD
               preparedInsert.executeUpdate();
-              System.out.println("Correcto " + sql);
+//              System.out.println("Correcto " + sql);
           } catch (Exception e) {
-              System.out.println("Incorrecto " + sql);
-              e.printStackTrace();
+//              System.out.println("Incorrecto " + sql);
+//              e.printStackTrace();
+                System.out.println(e.getMessage());
               return false;
         } 
         return true;
@@ -215,10 +215,10 @@ public class ControladorDB {
             PreparedStatement preparedDelete = connection.prepareStatement(sql);
               //Se elimina el registro en la BD
             preparedDelete.executeUpdate();
-            System.out.println("Correcto " + sql);
+//            System.out.println("Correcto " + sql);
         } catch (Exception e) {
-            System.out.println("Incorrecto " + sql);
-            System.out.println(e.toString());
+//            System.out.println("Incorrecto " + sql);
+            System.out.println(e.getMessage());
             return false;
         }
         return true;
