@@ -6,14 +6,11 @@
 package controlador;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import mainTest.VistaReporte;
 
 /**
  *
@@ -22,6 +19,7 @@ import mainTest.VistaReporte;
 public class ControladorTabla {
     
     public static void filtrar(JTable reporte,String  busqueda, int ... columns){
+        busqueda = (busqueda.isBlank()) ? busqueda:String.format("^%s$", busqueda);
         if (reporte.getRowSorter() != null)
        ((TableRowSorter<TableModel>) reporte.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda,columns));
     }

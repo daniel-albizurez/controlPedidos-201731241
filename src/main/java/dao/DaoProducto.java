@@ -13,7 +13,7 @@ import modelo.Producto;
  *
  * @author DANIEL
  */
-public class DaoProducto extends Dao {
+public class DaoProducto extends Dao<Producto> {
 
     private final String TABLA = "producto";
     private final String CODIGO = "codigo";
@@ -27,38 +27,38 @@ public class DaoProducto extends Dao {
         super(connection);
     }
     
-    
-    
     @Override
-    public <T> boolean agregar(T agregar, boolean noObligatorios) {
-        String values;
-        Producto nuevo = (Producto) agregar;
-        values = nuevo.getCodigo() + COMA +
-                COMILLA + nuevo.getNombre() + COMILLA + COMA +
-                COMILLA + nuevo.getFabricante() + COMILLA + COMA +
-                nuevo.getPrecio() + COMA +
-                COMILLA + nuevo.getDescripcion() + COMILLA + COMA +
-                nuevo.getGarantia()
-                ;
-        return true;
-    }
-
-    @Override
-    public <T> boolean modificar(T modificar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public <T> T seleccionar(String condicion) {
+    public String tabla() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public <T> boolean eliminar(T eliminar) {
+    public String todos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<String[]> buscarVarios(String campos, String condicion) {
+    public Producto generarModelo(String[] datos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String primaryKey(Producto obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String insertar(Producto obj, boolean noObligatorios) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String camposObligatorios() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String setCamposYValores(Producto obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

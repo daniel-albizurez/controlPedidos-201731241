@@ -81,17 +81,23 @@ public class ControladorClientes implements ActionListener {
         } else if (ev.getSource() == vista.jBtnModificar) {
             if (modelo.getNit().equals(vista.jTxtNit.getText())) {
                 modelo = construirModelo();
-                mensaje = (dao.modificar(modelo)) 
-                        ? "La modificación del cliente con nit " + 
-                        modelo.getNit() + " ha sido exitosa"
-                        : "No se ha podido modificar el cliente";
+                if (dao.modificar(modelo)) {
+                    mensaje = "La modificación del cliente con nit "
+                            + modelo.getNit() + " ha sido exitosa";
+                    limpiar();
+                } else {
+                    mensaje = "No se ha podido modificar el cliente";
+                }
             }
         } else if (ev.getSource() == vista.jBtnEliminar) {
             if (modelo.getNit().equals(vista.jTxtNit.getText())) {
                 modelo = construirModelo();
-                mensaje = (dao.eliminar(modelo))
-                        ? "Cliente eliminado exitosamente"
-                        : "No se ha podido eliminar el cliente";
+                if (dao.eliminar(modelo)) {
+                    mensaje = "Cliente eliminado exitosamente";
+                    limpiar();
+                } else {
+                    mensaje = "No se ha podido eliminar el cliente";
+                }
             }
         } else if (ev.getSource() == vista.jBtnVerClientes) {
             reporte.setVisible(true);
@@ -117,7 +123,9 @@ public class ControladorClientes implements ActionListener {
             }
 
         }
-        if (!mensaje.isBlank()) JOptionPane.showMessageDialog(vista, mensaje);
+        if (!mensaje.isBlank()) {
+            JOptionPane.showMessageDialog(vista, mensaje);
+        }
     }
 
     public Cliente construirModelo() {
@@ -141,5 +149,22 @@ public class ControladorClientes implements ActionListener {
         vista.jTxtEmail.setText(cliente.getEmail());
         vista.jTxtCredito.setText("" + cliente.getCredito());
 
+    }
+
+    public void limpiar() {
+        this.vista.jTxtNit.setText("");
+        this.vista.jTxtNit.setEditable(true);
+        this.vista.jTxtNombre.setText("");
+        this.vista.jTxtTel.setText("");
+        this.vista.jTxtDpi.setText("");
+        this.vista.jTxtDireccion.setText("");
+        this.vista.jTxtEmail.setText("");
+        this.vista.jTxtCredito.setText("0.0");
+        this.vista.jBtnAgregar.setEnabled(true);
+        this.vista.jBtnModificar.setEnabled(true);
+        this.vista.jBtnEliminar.setEnabled(true);
+
+        this.reporte.jTxtFiltroNit.setText("Ingrese un nit a buscar");
+        this.reporte.jTxtFiltroNombre.setText("Ingrese un nombre a buscar");
     }
 }
