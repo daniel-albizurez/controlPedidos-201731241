@@ -136,7 +136,7 @@ public abstract class Dao<T> {
     public T seleccionar(String campoCondicion, String valorCondicion) {
         String condicion = String.format(ASIGNACION,
                 campoCondicion.replace(IGUAL, ""),
-                valorCondicion.replace(IGUAL, ""));
+                setTexto(valorCondicion.replace(IGUAL, "")));
         try {
             String datos[] = buscarVarios(todos(), condicion).get(0);
             return generarModelo(datos);

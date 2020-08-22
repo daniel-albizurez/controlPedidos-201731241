@@ -40,18 +40,16 @@ public class ControladorArchivo implements ActionListener {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(this.vista);
         List<String> registros = new ArrayList<>();
-        try {
-            BufferedReader lector = new BufferedReader(
-                    new FileReader(chooser.getSelectedFile())
-            );
+        try ( BufferedReader lector = new BufferedReader(
+                new FileReader(chooser.getSelectedFile())
+        )) {
             String registro;
-            while ((registro = lector.readLine()) != null) {                
+            while ((registro = lector.readLine()) != null) {
                 registros.add(registro);
             }
-            lector.close();
         } catch (Exception e) {
             System.out.println("Error al leer el archivo");
-            e.printStackTrace();
+            System.out.println(e.getMessage());;
         }
         for (String registro : registros) {
             if (!ControladorRegistros.registrar(registro)) {

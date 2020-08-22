@@ -49,7 +49,6 @@ public class ControladorClientes implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ev) {
         //Control eventos interfaz principal
-        //TODO: Terminar Clientes
         String mensaje = "";
         if (ev.getSource() == vista.jBtnAgregar) {
             modelo = construirModelo();
@@ -75,7 +74,8 @@ public class ControladorClientes implements ActionListener {
                 } else {
                     mensaje = "No existe un cliente con el nit " + nit;
                 }
-
+            } else {
+                mensaje = "Por favor ingrese un nit";
             }
 
         } else if (ev.getSource() == vista.jBtnModificar) {
@@ -88,6 +88,9 @@ public class ControladorClientes implements ActionListener {
                 } else {
                     mensaje = "No se ha podido modificar el cliente";
                 }
+            } else {
+                mensaje = "Ha ocurrido un error, por favor vuelva a intentarlo";
+                vista.jTxtNit.setText(modelo.getNit());
             }
         } else if (ev.getSource() == vista.jBtnEliminar) {
             if (modelo.getNit().equals(vista.jTxtNit.getText())) {

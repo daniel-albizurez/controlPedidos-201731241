@@ -106,7 +106,7 @@ public class ControladorDB {
 //            System.out.println("Correcto " + sql);
             return result; 
         } catch (SQLException ex) {
-//            System.out.println("Incorecto " + sql);
+            System.out.println("Incorecto " + sql);
 //           ex.printStackTrace();
             System.out.println(ex.getMessage());
         } 
@@ -187,7 +187,7 @@ public class ControladorDB {
               preparedInsert.executeUpdate();
 //              System.out.println("Correcto " + sql);
           } catch (Exception e) {
-//              System.out.println("Incorrecto " + sql);
+              System.out.println("Incorrecto " + sql);
 //              e.printStackTrace();
                 System.out.println(e.getMessage());
               return false;

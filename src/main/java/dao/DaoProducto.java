@@ -40,7 +40,7 @@ public class DaoProducto extends Dao<Producto> {
     
     @Override
     public String primaryKey(Producto obj) {
-        return asignacion(CODIGO, obj.getCodigo());
+        return asignacion(CODIGO, setTexto(obj.getCodigo()));
     }
 
     @Override
