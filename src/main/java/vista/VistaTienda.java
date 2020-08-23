@@ -34,7 +34,6 @@ public class VistaTienda extends javax.swing.JFrame {
         jBtnAgregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTxtCodigo = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         jTxtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -46,7 +45,11 @@ public class VistaTienda extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTxtEmail = new javax.swing.JTextField();
-        jTxtHorario = new javax.swing.JTextField();
+        jTxtCodigo = new javax.swing.JTextField();
+        jBtnCancelar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jTxtHorarioInicio = new javax.swing.JTextField();
+        jTxtHorarioFin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,8 +67,6 @@ public class VistaTienda extends javax.swing.JFrame {
 
         jLabel2.setText("Codigo");
 
-        jTxtCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-
         jLabel3.setText("Nombre");
 
         jLabel4.setText("Dirección");
@@ -82,6 +83,11 @@ public class VistaTienda extends javax.swing.JFrame {
 
         jLabel8.setText("Horario");
 
+        jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.setEnabled(false);
+
+        jLabel9.setText("En formato h:mm");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,9 +99,9 @@ public class VistaTienda extends javax.swing.JFrame {
                         .addComponent(jBtnAgregar)
                         .addGap(71, 71, 71)
                         .addComponent(jBtnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnEliminar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -106,19 +112,30 @@ public class VistaTienda extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
                         .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTxtTel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtTel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtNombre)
-                            .addComponent(jTxtDireccion)
-                            .addComponent(jTxtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtHorario, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(62, 62, 62)
-                        .addComponent(jBtnBuscar)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtTel1)
+                            .addComponent(jTxtTel2)
+                            .addComponent(jTxtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTxtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTxtEmail)
+                            .addComponent(jTxtCodigo)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTxtHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTxtHorarioFin, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jBtnBuscar)
+                                    .addComponent(jBtnCancelar)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel9)))))
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(194, 194, 194))
         );
@@ -135,7 +152,8 @@ public class VistaTienda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnCancelar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -155,8 +173,10 @@ public class VistaTienda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTxtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTxtHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtHorarioFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnAgregar)
                     .addComponent(jBtnEliminar)
@@ -216,6 +236,7 @@ public class VistaTienda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jBtnAgregar;
     public javax.swing.JButton jBtnBuscar;
+    public javax.swing.JButton jBtnCancelar;
     public javax.swing.JButton jBtnEliminar;
     public javax.swing.JButton jBtnModificar;
     private javax.swing.JLabel jLabel1;
@@ -226,11 +247,13 @@ public class VistaTienda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JFormattedTextField jTxtCodigo;
+    public javax.swing.JTextField jTxtCodigo;
     public javax.swing.JTextField jTxtDireccion;
     public javax.swing.JTextField jTxtEmail;
-    public javax.swing.JTextField jTxtHorario;
+    public javax.swing.JTextField jTxtHorarioFin;
+    public javax.swing.JTextField jTxtHorarioInicio;
     public javax.swing.JTextField jTxtNombre;
     public javax.swing.JFormattedTextField jTxtTel1;
     public javax.swing.JFormattedTextField jTxtTel2;

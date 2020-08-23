@@ -16,8 +16,6 @@ public class ControladorRegistros {
     public static boolean registrar(String registro) {
         String[] datos = registro.split(",");
         Boolean exitoso = true;
-        //TODO: Implementar los metodos de agregación del DAO
-        //TODO: Agregar Pedidos, Ventas, Usuarios
         try {
             switch (datos[0] + datos.length) {
                 case "PRODUCTO7":

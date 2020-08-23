@@ -23,7 +23,7 @@ public abstract class Dao<T> {
     public final static String IGUAL = " = ";
     public final static String COMILLA = "\'";
     public final static String COMA = ",";
-    public final static String AND = "AND";
+    public final static String AND = " AND ";
 
     protected final String TEXTO = COMILLA + "%s" + COMILLA;
     protected final String ASIGNACION = "%s" + IGUAL + "%s";

@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 public class ControladorDB {
 
     private final Connection connection;
-    //TODO: Cambiar Insert para recibir que campos se van a insertar
     private final String INSERT = "INSERT INTO %s %s VALUES (%s)";
     private final String SELECT = "SELECT %s FROM %s";
     private final String UPDATE = "UPDATE %s SET %s";

@@ -14,24 +14,24 @@ import modelo.Tienda;
  */
 public class DaoTienda extends Dao<Tienda> {
 
-    public final String TABLA = "tienda";
+    private static final String TABLA = "tienda";
     
     //NOT NULL
-    public final String CODIGO = "codigo";
-    public final String NOMBRE = "nombre";
-    public final String DIRECCION = "direccion";
-    public final String TELEFONO1 = "telefono1";
-    public final String NOT_NULL = CODIGO + COMA + NOMBRE + COMA + DIRECCION 
+    public static final String CODIGO = "codigo";
+    public static final String NOMBRE = "nombre";
+    public static final String DIRECCION = "direccion";
+    public static final String TELEFONO1 = "telefono1";
+    public static final String NOT_NULL = CODIGO + COMA + NOMBRE + COMA + DIRECCION 
             + COMA + TELEFONO1;
     
     //NULL
-    public final String TELEFONO2 = "telefono2";
-    public final String EMAIL = "email";
-    public final String HORARIO = "horario";
-    public final String NULL = TELEFONO2 + COMA + EMAIL + COMA
+    public static final String TELEFONO2 = "telefono2";
+    public static final String EMAIL = "email";
+    public static final String HORARIO = "horario";
+    public static final String NULL = TELEFONO2 + COMA + EMAIL + COMA
             + HORARIO;
     
-    public final String ALL = NOT_NULL + COMA + NULL;
+    private static final String ALL = NOT_NULL + COMA + NULL;
     
     public DaoTienda(Connection connection) {
         super(connection);

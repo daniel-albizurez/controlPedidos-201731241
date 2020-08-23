@@ -9,6 +9,7 @@ import dao.DaoClientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 import reportes.ReporteClientes;
@@ -20,26 +21,29 @@ import vista.VistaCliente;
  *
  * @author DANIEL
  */
-public class ControladorClientes implements ActionListener {
-
-    private VistaCliente vista;
-    private ReporteClientes reporte;
-    private DaoClientes dao;
-    Cliente modelo;
+public class ControladorClientes extends Controlador<Cliente, VistaCliente, ReporteClientes> implements ActionListener {
 
     public ControladorClientes(Connection connection) {
         this.vista = new VistaCliente();
         this.vista.setVisible(true);
-        this.vista.jBtnAgregar.addActionListener(this);
-        this.vista.jBtnBuscar.addActionListener(this);
-        this.vista.jBtnModificar.addActionListener(this);
-        this.vista.jBtnEliminar.addActionListener(this);
-        this.vista.jBtnVerClientes.addActionListener(this);
-        
+
+        (agregar = this.vista.jBtnAgregar).addActionListener(this);
+        (buscar = this.vista.jBtnBuscar).addActionListener(this);
+        (modificar = this.vista.jBtnModificar).addActionListener(this);
+        (eliminar = this.vista.jBtnEliminar).addActionListener(this);
+        (cancelar = this.vista.jBtnCancelar).addActionListener(this);
+        (verTodos = this.vista.jBtnVerClientes).addActionListener(this);
+
+//        this.vista.jBtnAgregar.addActionListener(this);
+//        this.vista.jBtnBuscar.addActionListener(this);
+//        this.vista.jBtnModificar.addActionListener(this);
+//        this.vista.jBtnEliminar.addActionListener(this);
+//        this.vista.jBtnVerClientes.addActionListener(this);
         this.vista.jTxtCredito.setText("0.00");
 
         reporte = new ReporteClientes();
-        reporte.jTblClientes.setAutoCreateRowSorter(true);
+        (tablaReporte = reporte.jTblClientes).setAutoCreateRowSorter(true);
+
         reporte.jTxtFiltroNit.addActionListener(this);
         reporte.jTxtFiltroNombre.addActionListener(this);
 
@@ -48,66 +52,66 @@ public class ControladorClientes implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ev) {
+        mensaje = "";
         //Control eventos interfaz principal
-        String mensaje = "";
-        if (ev.getSource() == vista.jBtnAgregar) {
-            modelo = construirModelo();
-
-            mensaje = (dao.agregar(modelo, false))
-                    ? "Se ha ingresado el cliente con nit " + modelo.getNit()
-                    : "El cliente con nit " + modelo.getNit() + " ya existe";
-        } else if (ev.getSource() == vista.jBtnBuscar) {
+//        String mensaje = "";
+        if (ev.getSource() == agregar) {
+            mensaje = agregar(construirModelo());
+//            if (modelo != null) {
+//            mensaje = (dao.agregar(modelo, false))
+//                    ? String.format(INSERCION_CORRECTA, dao.tabla(), dao.primaryKey(modelo))
+//                    : String.format(INSERCION_INCORRECTA,dao.tabla(), dao.primaryKey(modelo));
+//                
+//            } else {
+//                mensaje = CAMPOS_OBLIGATORIOS;
+//            }
+        } else if (ev.getSource() == buscar) {
             String nit = vista.jTxtNit.getText();
             if (!nit.isBlank()) {
-                modelo = dao.seleccionar("NIT", nit);
+                modelo = dao.seleccionar(DaoClientes.NIT, nit);
 
                 if (modelo != null) {
                     mostrarModelo(modelo);
                     mensaje = "";
-
-                    vista.jTxtNit.setEditable(false);
-
-                    vista.jBtnModificar.setEnabled(true);
-                    vista.jBtnAgregar.setEnabled(false);
-                    vista.jBtnEliminar.setEnabled(true);
+                    interfazModificar();
+//                    vista.jTxtNit.setEditable(false);
+//
+//                    vista.jBtnModificar.setEnabled(true);
+//                    vista.jBtnAgregar.setEnabled(false);
+//                    vista.jBtnEliminar.setEnabled(true);
 
                 } else {
-                    mensaje = "No existe un cliente con el nit " + nit;
+                    mensaje = String.format(NO_EXISTE, dao.tabla(), DaoClientes.NIT + " " + nit);
                 }
             } else {
-                mensaje = "Por favor ingrese un nit";
+                mensaje = String.format(INGRESE_VALOR, DaoClientes.NIT);
             }
 
-        } else if (ev.getSource() == vista.jBtnModificar) {
+        } else if (ev.getSource() == modificar) {
             if (modelo.getNit().equals(vista.jTxtNit.getText())) {
-                modelo = construirModelo();
-                if (dao.modificar(modelo)) {
-                    mensaje = "La modificación del cliente con nit "
-                            + modelo.getNit() + " ha sido exitosa";
-                    limpiar();
-                } else {
-                    mensaje = "No se ha podido modificar el cliente";
-                }
+//                modelo = construirModelo();
+                mensaje = modificar(construirModelo());
+//                if (dao.modificar(modelo)) {
+//                    mensaje = String.format(MODIFICACION_EXITOSA, dao.tabla(), dao.primaryKey(modelo));
+//                            "La modificación del cliente con nit "
+//                            + modelo.getNit() + " ha sido exitosa";
+//                    limpiar();
+//                } else {
+//                    mensaje = MODIFICACION_FRACASADA;
+//                }
             } else {
-                mensaje = "Ha ocurrido un error, por favor vuelva a intentarlo";
+                mensaje = ERROR;
                 vista.jTxtNit.setText(modelo.getNit());
             }
-        } else if (ev.getSource() == vista.jBtnEliminar) {
+        } else if (ev.getSource() == eliminar) {
             if (modelo.getNit().equals(vista.jTxtNit.getText())) {
-                modelo = construirModelo();
-                if (dao.eliminar(modelo)) {
-                    mensaje = "Cliente eliminado exitosamente";
-                    limpiar();
-                } else {
-                    mensaje = "No se ha podido eliminar el cliente";
-                }
+//                modelo = construirModelo();
+                mensaje = eliminar(construirModelo());
+            } else {
+                mensaje = ERROR;
             }
-        } else if (ev.getSource() == vista.jBtnVerClientes) {
-            reporte.setVisible(true);
-            ControladorTabla.llenar(reporte.jTblClientes,
-                    dao.ALL.split(","),
-                    dao.buscarVarios("*", "")
-            );
+        } else {
+            super.actionPerformed(ev);
         }
 
         //Control eventos reporte
@@ -131,6 +135,11 @@ public class ControladorClientes implements ActionListener {
         }
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
     public Cliente construirModelo() {
         Cliente cliente = new Cliente();
         cliente.setNit(vista.jTxtNit.getText());
@@ -140,9 +149,22 @@ public class ControladorClientes implements ActionListener {
         cliente.setDireccion(vista.jTxtDireccion.getText());
         cliente.setEmail(vista.jTxtEmail.getText());
         cliente.setCredito(Double.valueOf(vista.jTxtCredito.getText()));
+
+        if (cliente.getNit().isBlank()
+                || cliente.getNombre().isBlank()
+                || cliente.getTelefono().isBlank()) {
+            return null;
+        }
         return cliente;
     }
 
+    @Override
+    public void interfazModificar() {
+        vista.jTxtNit.setEditable(false);
+        super.interfazModificar();
+    }
+
+    @Override
     public void mostrarModelo(Cliente cliente) {
         vista.jTxtNit.setText(cliente.getNit());
         vista.jTxtNombre.setText(cliente.getNombre());
@@ -154,7 +176,9 @@ public class ControladorClientes implements ActionListener {
 
     }
 
+    @Override
     public void limpiar() {
+        super.limpiar();
         this.vista.jTxtNit.setText("");
         this.vista.jTxtNit.setEditable(true);
         this.vista.jTxtNombre.setText("");
@@ -163,9 +187,6 @@ public class ControladorClientes implements ActionListener {
         this.vista.jTxtDireccion.setText("");
         this.vista.jTxtEmail.setText("");
         this.vista.jTxtCredito.setText("0.0");
-        this.vista.jBtnAgregar.setEnabled(true);
-        this.vista.jBtnModificar.setEnabled(true);
-        this.vista.jBtnEliminar.setEnabled(true);
 
         this.reporte.jTxtFiltroNit.setText("Ingrese un nit a buscar");
         this.reporte.jTxtFiltroNombre.setText("Ingrese un nombre a buscar");

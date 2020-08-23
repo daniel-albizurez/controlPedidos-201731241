@@ -13,31 +13,42 @@ import modelo.Ubicacion;
  * @author DANIEL
  */
 public class DaoUbicacion extends Dao<Ubicacion> {
-    
-    public final String TABLA = "ubicacion";
-    
+
+    private static final String TABLA = "ubicacion";
+
     //NOT NULL
-    public final String PRODUCTO = "producto";
-    public final String TIENDA = "tienda";
-    public final String NOT_NULL = PRODUCTO + COMA + TIENDA + COMA;
+    public static final String PRODUCTO = "producto";
+    public static final String TIENDA = "tienda";
+    public static final String NOT_NULL = PRODUCTO + COMA + TIENDA;
     //NULL
-    public final String CANTIDAD = "cantidad";
-    
-    public final String ALL = NOT_NULL + COMA + CANTIDAD;
+    public static final String CANTIDAD = "cantidad";
+
+    private static final String ALL = NOT_NULL + COMA + CANTIDAD;
 
     public DaoUbicacion(Connection connection) {
         super(connection);
     }
-    
+
     @Override
     public String tabla() {
         return TABLA;
     }
 
+    public Ubicacion seleccionar(Ubicacion u) {
+        String condicion = primaryKey(u);
+        try {
+            String datos[] = buscarVarios(todos(), condicion).get(0);
+            return generarModelo(datos);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+
+    }
+
     @Override
     public String primaryKey(Ubicacion obj) {
-        return asignacion(PRODUCTO, setTexto(obj.getProducto())) +
-                AND + asignacion(TIENDA, setTexto(obj.getTienda()));
+        return asignacion(PRODUCTO, setTexto(obj.getProducto()))
+                + AND + asignacion(TIENDA, setTexto(obj.getTienda()));
     }
 
     @Override
@@ -52,10 +63,9 @@ public class DaoUbicacion extends Dao<Ubicacion> {
 
     @Override
     public String insertar(Ubicacion obj, boolean noObligatorios) {
-        String valores = 
-                obj.getProducto() + COMA
-                + obj.getTienda()
-                ;
+        String valores
+                = obj.getProducto() + COMA
+                + obj.getTienda();
         if (noObligatorios) {
             valores += COMA + obj.getCantidad();
         }
@@ -65,18 +75,18 @@ public class DaoUbicacion extends Dao<Ubicacion> {
     @Override
     public String setCamposYValores(Ubicacion obj) {
         return primaryKey(obj).replace(AND, COMA) + COMA
-                + obj.getCantidad();
+                + asignacion(CANTIDAD, String.valueOf(obj.getCantidad()));
     }
 
     @Override
     public Ubicacion generarModelo(String[] datos) {
         Ubicacion modelo = new Ubicacion();
-        
+
         modelo.setProducto(datos[0]);
         modelo.setTienda(datos[1]);
         modelo.setCantidad(Integer.parseInt(datos[2]));
-        
+
         return modelo;
     }
-    
+
 }

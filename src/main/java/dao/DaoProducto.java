@@ -14,20 +14,20 @@ import modelo.Producto;
  */
 public class DaoProducto extends Dao<Producto> {
 
-    private final String TABLA = "producto";
+    private static final String TABLA = "producto";
     //NOT NULL
-    private final String CODIGO = "codigo";
-    private final String NOMBRE = "nombre";
-    private final String FABRICANTE = "fabricante";
-    private final String PRECIO = "precio";
-    private final String NOT_NULL = CODIGO + COMA + NOMBRE + COMA +
+    public static final String CODIGO = "codigo";
+    public static final String NOMBRE = "nombre";
+    public static final String FABRICANTE = "fabricante";
+    public static final String PRECIO = "precio";
+    public static final String NOT_NULL = CODIGO + COMA + NOMBRE + COMA +
             FABRICANTE+ COMA + PRECIO;
     //NULL
-    private final String DESCRIPCION = "descripcion";
-    private final String GARANTIA = "garantia";
-    private final String NULL = DESCRIPCION + COMA + GARANTIA;
+    public static final String DESCRIPCION = "descripcion";
+    public static final String GARANTIA = "garantia";
+    public static final String NULL = DESCRIPCION + COMA + GARANTIA;
 
-    private final String ALL = NOT_NULL + COMA + NULL;
+    private static final String ALL = NOT_NULL + COMA + NULL;
     
     public DaoProducto(Connection connection) {
         super(connection);

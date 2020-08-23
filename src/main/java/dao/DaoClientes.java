@@ -15,21 +15,21 @@ import modelo.Cliente;
  */
 public class DaoClientes extends Dao<Cliente> {
 
-    private final String TABLA = "cliente";
+    private static final String TABLA = "cliente";
     //Not null
-    private final String NIT = "nit";
-    private final String NOMBRE = "nombre";
-    private final String TELEFONO = "telefono";
-    private final String NOT_NULL = NIT + COMA + NOMBRE + COMA + TELEFONO;
+    public static final String NIT = "nit";
+    public static final String NOMBRE = "nombre";
+    public static final String TELEFONO = "telefono";
+    public static final String NOT_NULL = NIT + COMA + NOMBRE + COMA + TELEFONO;
 
     //Null
-    private final String DPI = "dpi";
-    private final String DIRECCION = "direccion";
-    private final String EMAIL = "email";
-    private final String CREDITO = "credito";
-    private final String NULL = DPI + COMA + DIRECCION + COMA + EMAIL + COMA + CREDITO;
+    public static final String DPI = "dpi";
+    public static final String DIRECCION = "direccion";
+    public static final String EMAIL = "email";
+    public static final String CREDITO = "credito";
+    public static final String NULL = DPI + COMA + DIRECCION + COMA + EMAIL + COMA + CREDITO;
 
-    public final String ALL = NOT_NULL + COMA + NULL;
+    private static final String ALL = NOT_NULL + COMA + NULL;
 
     public DaoClientes(Connection connection) {
         super(connection);
