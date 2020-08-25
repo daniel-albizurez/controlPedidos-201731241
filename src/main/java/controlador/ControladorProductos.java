@@ -69,7 +69,7 @@ public class ControladorProductos extends Controlador<Producto, VistaProducto, V
             almacen = new Ubicacion(modelo.getCodigo(),
                     actual.getCodigo(),
                     (Integer) vista.jSpinCantidad.getValue());
-            daoUbicacion.agregar(almacen, true);
+            daoUbicacion.agregar(almacen);
         } else if (ev.getSource() == this.vista.jBtnBuscar) {
             String codigo = vista.jTxtCodigo.getText();
             if (!codigo.isBlank()) {
@@ -102,7 +102,7 @@ public class ControladorProductos extends Controlador<Producto, VistaProducto, V
                 almacen.setCantidad((Integer) vista.jSpinCantidad.getValue());
                 mensaje = modificar(construirModelo());
                 if(!daoUbicacion.modificar(almacen)){
-                    daoUbicacion.agregar(almacen, true);
+                    daoUbicacion.agregar(almacen);
                 }
             } else {
                 mensaje = ERROR;

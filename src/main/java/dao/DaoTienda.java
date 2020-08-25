@@ -58,7 +58,7 @@ public class DaoTienda extends Dao<Tienda> {
     }
 
     @Override
-    public String insertar(Tienda obj, boolean noObligatorios) {
+    public String insertar(Tienda obj) {
         String valores
                 = setTexto(obj.getCodigo()) + COMA
                 + setTexto(obj.getNombre()) + COMA

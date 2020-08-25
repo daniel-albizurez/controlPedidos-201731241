@@ -68,7 +68,7 @@ public abstract class Controlador<M, V extends JFrame, R extends JFrame> impleme
 
     public String agregar(M modelo) {
         if (modelo != null) {
-            return (dao.agregar(modelo, false))
+            return (dao.agregar(modelo))
                     ? String.format(INSERCION_CORRECTA, dao.tabla(), dao.primaryKey(modelo))
                     : String.format(INSERCION_INCORRECTA, dao.tabla(), dao.primaryKey(modelo));
         } else {

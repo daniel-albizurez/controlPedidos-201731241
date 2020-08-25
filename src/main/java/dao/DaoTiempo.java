@@ -58,7 +58,7 @@ public class DaoTiempo extends Dao<Tiempo>{
     }
 
     @Override
-    public String insertar(Tiempo obj, boolean noObligatorios) {
+    public String insertar(Tiempo obj) {
         String valores =
                 setTexto(obj.getTienda1()) + COMA
                 + setTexto(obj.getTienda2()) + COMA

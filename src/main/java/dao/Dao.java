@@ -78,7 +78,7 @@ public abstract class Dao<T> {
      * @param noObligatorios Define si se desea ingresar los campos no obligatorios a la bd
      * @return El String generado
      */
-    public abstract String insertar(T obj, boolean noObligatorios);
+    public abstract String insertar(T obj);
     
     /**
      * Método que genera un String que contiene la estructura
@@ -107,9 +107,9 @@ public abstract class Dao<T> {
      * @param noObligatorios Define si se desea ingresar los campos no obligatorios a la bd
      * @return Boolean true si la inserción fue exitosa, false de lo contrario
      */
-    public boolean agregar(T nuevo, boolean noObligatorios) {
-        String campos = (noObligatorios) ? todos() : camposObligatorios();
-        return this.controladorDb.insert(tabla(), campos, insertar(nuevo, noObligatorios));
+    public boolean agregar(T nuevo) {
+        String campos = todos();
+        return this.controladorDb.insert(tabla(), campos, insertar(nuevo));
     }
     
     /**
@@ -142,7 +142,7 @@ public abstract class Dao<T> {
             String datos[] = buscarVarios(todos(), condicion).get(0);
             return generarModelo(datos);
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }

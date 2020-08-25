@@ -62,7 +62,7 @@ public class DaoUbicacion extends Dao<Ubicacion> {
     }
 
     @Override
-    public String insertar(Ubicacion obj, boolean noObligatorios) {
+    public String insertar(Ubicacion obj) {
         String valores
                 = setTexto(obj.getProducto()) + COMA
                 + setTexto(obj.getTienda()) + COMA

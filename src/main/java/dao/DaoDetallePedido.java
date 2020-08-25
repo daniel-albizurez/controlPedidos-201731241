@@ -48,7 +48,7 @@ public class DaoDetallePedido extends Dao<Detalle> {
     }
 
     @Override
-    public String insertar(Detalle obj, boolean noObligatorios) {
+    public String insertar(Detalle obj) {
         String valores
                 = obj.getReferencia() + COMA
                 + setTexto(obj.getProducto()) + COMA

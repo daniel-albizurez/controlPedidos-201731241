@@ -35,9 +35,9 @@ public class DaoVenta extends Dao<Venta> {
     }
     
     public boolean agregar(Venta venta, ArrayList<Detalle> detalles){
-        boolean exitoso = super.agregar(venta, true);
+        boolean exitoso = super.agregar(venta);
         for (Detalle detalle : detalles) {
-            exitoso &= daoDetalle.agregar(detalle, true);
+            exitoso &= daoDetalle.agregar(detalle);
         }
         if (!exitoso) {
             eliminar(venta);
@@ -66,7 +66,7 @@ public class DaoVenta extends Dao<Venta> {
     }
 
     @Override
-    public String insertar(Venta obj, boolean noObligatorios) {
+    public String insertar(Venta obj) {
         String valores
                 = obj.getCodigo() + COMA
                 + setTexto(obj.getTienda()) + COMA

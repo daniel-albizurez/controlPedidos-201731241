@@ -42,9 +42,9 @@ public class DaoPedido extends Dao<Pedido> {
     }
 
     public boolean agregar(Pedido pedido, ArrayList<Detalle> detalles){
-        boolean exitoso = super.agregar(pedido, true);
+        boolean exitoso = super.agregar(pedido);
         for (Detalle detalle : detalles) {
-            exitoso &= daoDetalle.agregar(detalle, true);
+            exitoso &= daoDetalle.agregar(detalle);
         }
         if (!exitoso) {
             eliminar(pedido);
@@ -75,7 +75,7 @@ public class DaoPedido extends Dao<Pedido> {
     }
 
     @Override
-    public String insertar(Pedido obj, boolean noObligatorios) {
+    public String insertar(Pedido obj) {
         String valores =
                 obj.getCodigo() + COMA
                 + setTexto(obj.getTiendaOrigen()) + COMA

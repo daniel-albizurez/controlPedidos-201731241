@@ -36,33 +36,29 @@ public class DaoClientes extends Dao<Cliente> {
     }
 
     @Override
-    public String insertar(Cliente obj, boolean noObligatorios){
-        String valores = 
-                setTexto(obj.getNit()) + COMA
+    public String insertar(Cliente obj) {
+        String valores
+                = setTexto(obj.getNit()) + COMA
                 + setTexto(obj.getNombre()) + COMA
-                + setTexto(obj.getTelefono());
-
-        if (noObligatorios) {
-            valores += COMA
-                    + setTexto(obj.getDpi()) + COMA
-                    + setTexto(obj.getDireccion()) + COMA
-                    + setTexto(obj.getEmail()) + COMA
-                    + obj.getCredito();
-        }
+                + setTexto(obj.getTelefono()) + COMA
+                + valorPorDefecto(obj.getDpi()) + COMA
+                + valorPorDefecto(obj.getDireccion()) + COMA
+                + valorPorDefecto(obj.getEmail()) + COMA
+                + valorPorDefecto(obj.getCredito());
         return valores;
     }
-    
+
     @Override
-    public String setCamposYValores(Cliente obj){
+    public String setCamposYValores(Cliente obj) {
         return primaryKey(obj) + COMA
                 + asignacion(NOMBRE, setTexto(obj.getNombre())) + COMA
                 + asignacion(TELEFONO, setTexto(obj.getTelefono())) + COMA
-                + asignacion(DPI, setTexto(obj.getDpi())) + COMA
-                + asignacion(DIRECCION, setTexto(obj.getDireccion())) + COMA
-                + asignacion(EMAIL, setTexto(obj.getEmail())) + COMA
-                + asignacion(CREDITO, ""+obj.getCredito());
+                + asignacion(DPI, valorPorDefecto(obj.getDpi())) + COMA
+                + asignacion(DIRECCION, valorPorDefecto(obj.getDireccion())) + COMA
+                + asignacion(EMAIL, valorPorDefecto(obj.getEmail())) + COMA
+                + asignacion(CREDITO, valorPorDefecto(obj.getCredito()));
     }
-    
+
     @Override
     public String tabla() {
         return TABLA;
@@ -74,10 +70,10 @@ public class DaoClientes extends Dao<Cliente> {
     }
 
     @Override
-    public String camposObligatorios(){
+    public String camposObligatorios() {
         return NOT_NULL;
     }
-    
+
     @Override
     public Cliente generarModelo(String[] datos) {
         Cliente modelo = new Cliente();
@@ -93,7 +89,7 @@ public class DaoClientes extends Dao<Cliente> {
 
     @Override
     public String primaryKey(Cliente obj) {
-        return asignacion(NIT,setTexto(obj.getNit()));
+        return asignacion(NIT, setTexto(obj.getNit()));
     }
 
 }

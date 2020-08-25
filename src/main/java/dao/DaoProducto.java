@@ -20,15 +20,15 @@ public class DaoProducto extends Dao<Producto> {
     public static final String NOMBRE = "nombre";
     public static final String FABRICANTE = "fabricante";
     public static final String PRECIO = "precio";
-    public static final String NOT_NULL = CODIGO + COMA + NOMBRE + COMA +
-            FABRICANTE+ COMA + PRECIO;
+    public static final String NOT_NULL = CODIGO + COMA + NOMBRE + COMA
+            + FABRICANTE + COMA + PRECIO;
     //NULL
     public static final String DESCRIPCION = "descripcion";
     public static final String GARANTIA = "garantia";
     public static final String NULL = DESCRIPCION + COMA + GARANTIA;
 
     private static final String ALL = NOT_NULL + COMA + NULL;
-    
+
     public DaoProducto(Connection connection) {
         super(connection);
     }
@@ -37,7 +37,7 @@ public class DaoProducto extends Dao<Producto> {
     public String tabla() {
         return TABLA;
     }
-    
+
     @Override
     public String primaryKey(Producto obj) {
         return asignacion(CODIGO, setTexto(obj.getCodigo()));
@@ -52,36 +52,31 @@ public class DaoProducto extends Dao<Producto> {
     public String camposObligatorios() {
         return NOT_NULL;
     }
-    
-    @Override
-    public String insertar(Producto obj, boolean noObligatorios) {
-        String valores =
-                setTexto(obj.getCodigo()) + COMA
-                + setTexto(obj.getNombre()) + COMA
-                + setTexto(obj.getFabricante()) + COMA
-                + obj.getPrecio()
-                ;
-        if (noObligatorios) {
-            valores +=
-                    setTexto(obj.getDescripcion()) + COMA
-                    + obj.getGarantia()
-                    ;
-        }
-        return valores;
-    }
 
     @Override
-    public String setCamposYValores(Producto obj) {
+    public String insertar(Producto obj) {
+        String valores
+                = setTexto(obj.getCodigo()) + COMA
+                + setTexto(obj.getNombre()) + COMA
+                + setTexto(obj.getFabricante()) + COMA
+                + obj.getPrecio() + COMA
+                + valorPorDefecto(obj.getDescripcion()) + COMA
+                + valorPorDefecto(obj.getGarantia());
+    return valores ;
+}
+
+@Override
+public String setCamposYValores(Producto obj) {
         return primaryKey(obj) + COMA
                 + asignacion(NOMBRE, setTexto(obj.getNombre())) + COMA
                 + asignacion(FABRICANTE, setTexto(obj.getFabricante())) + COMA
                 + asignacion(PRECIO, setTexto(""+obj.getPrecio())) + COMA
-                + asignacion(DESCRIPCION, setTexto(obj.getDescripcion())) + COMA
-                + asignacion(GARANTIA, setTexto(""+obj.getGarantia()))                ;
+                + asignacion(DESCRIPCION, valorPorDefecto(obj.getDescripcion())) + COMA
+                + asignacion(GARANTIA, valorPorDefecto(obj.getGarantia()))                ;
     }
 
     @Override
-    public Producto generarModelo(String[] datos) {
+public Producto generarModelo(String[] datos) {
         Producto modelo = new Producto();
         modelo.setCodigo(datos[0]);
         modelo.setNombre(datos[1]);
