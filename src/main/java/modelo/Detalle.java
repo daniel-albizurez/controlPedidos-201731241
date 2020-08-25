@@ -19,8 +19,8 @@ public class Detalle {
     public Detalle() {
     }
 
-    public Detalle(int pedido, String articulo, int cantidad) {
-        this.referencia = pedido;
+    public Detalle(int orden, String articulo, int cantidad) {
+        this.referencia = orden;
         this.producto = articulo;
         this.cantidad = cantidad;
     }

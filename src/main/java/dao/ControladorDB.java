@@ -36,6 +36,10 @@ public class ControladorDB {
             System.out.println(ex.getMessage());
         }
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
     
     /**
      * Método para limpiar un texto y evitar la inyección SQL
@@ -69,8 +73,8 @@ public class ControladorDB {
             preparedInsert.executeUpdate();
 //            System.out.println("Correcto " + sql);
         } catch (SQLException e) {
-            System.out.println(/*"Incorrecto " + sql
-            +*/ e.getMessage());
+            System.out.println("Incorrecto " + sql +
+             e.getMessage());
 //            e.printStackTrace();
             return false;
         }
@@ -181,9 +185,10 @@ public class ControladorDB {
         sql = clean(sql);
         try {
             //Se genera un PreparedStatement específico para actualizar un registro existente
-              PreparedStatement preparedInsert = connection.prepareStatement(sql);
+              PreparedStatement preparedUpdate = connection.prepareStatement(sql);
               //Se actualiza el registro en la BD
-              preparedInsert.executeUpdate();
+              
+              return (preparedUpdate.executeUpdate()>0);
 //              System.out.println("Correcto " + sql);
           } catch (Exception e) {
               System.out.println("Incorrecto " + sql);
@@ -191,7 +196,6 @@ public class ControladorDB {
                 System.out.println(e.getMessage());
               return false;
         } 
-        return true;
         
     }
 /**

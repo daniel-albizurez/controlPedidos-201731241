@@ -24,7 +24,7 @@ import vista.VistaProducto;
  *
  * @author DANIEL
  */
-public class ControladorProductos extends Controlador<Producto, VistaProducto, VistaProducto> implements ActionListener, ChangeListener {
+public class ControladorProductos extends Controlador<Producto, VistaProducto, VistaProducto> implements ChangeListener {
 
     //    private ReporteProductos reporte;
     private DaoUbicacion daoUbicacion;
@@ -45,6 +45,7 @@ public class ControladorProductos extends Controlador<Producto, VistaProducto, V
         (agregar = this.vista.jBtnAgregar).addActionListener(this);
         (buscar = this.vista.jBtnBuscar).addActionListener(this);
         (eliminar = this.vista.jBtnEliminar).addActionListener(this);
+        eliminar.setText("Eliminar Existencias");
         (modificar = this.vista.jBtnModificar).addActionListener(this);
         (cancelar = this.vista.jBtnCancelar).addActionListener(this);
         this.vista.setVisible(true);
@@ -63,7 +64,7 @@ public class ControladorProductos extends Controlador<Producto, VistaProducto, V
 
     @Override
     public void actionPerformed(ActionEvent ev) {
-        if (ev.getSource() == this.vista.jBtnAgregar) {
+        if (ev.getSource() == agregar) {
             mensaje = agregar(modelo = construirModelo());
             almacen = new Ubicacion(modelo.getCodigo(),
                     actual.getCodigo(),
@@ -109,7 +110,11 @@ public class ControladorProductos extends Controlador<Producto, VistaProducto, V
             }
         } else if (ev.getSource() == vista.jBtnEliminar) {
             if (modelo.getCodigo().equals(vista.jTxtCodigo.getText())) {
-                mensaje = eliminar(construirModelo());
+                if (daoUbicacion.eliminar(almacen)) {
+                    mensaje = String.format(ELIMINACION_EXITOSA, daoUbicacion.tabla());
+                } else {
+                    mensaje = ERROR;
+                }
             } else {
                 mensaje = ERROR;
                 vista.jTxtCodigo.setText(modelo.getCodigo());

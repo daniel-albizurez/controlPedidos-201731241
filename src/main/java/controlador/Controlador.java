@@ -33,7 +33,7 @@ public abstract class Controlador<M, V extends JFrame, R extends JFrame> impleme
 
     protected M modelo;
 
-    protected String mensaje;
+    protected String mensaje = "";
 
     protected final String INSERCION_CORRECTA = "Se ha ingresado el %s con %s exitosamente";
     protected final String INSERCION_INCORRECTA = "El %s con %s ya existe";

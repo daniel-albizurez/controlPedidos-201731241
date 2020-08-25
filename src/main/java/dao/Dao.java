@@ -24,7 +24,8 @@ public abstract class Dao<T> {
     public final static String COMILLA = "\'";
     public final static String COMA = ",";
     public final static String AND = " AND ";
-
+    public final static String DEFAULT = "default";
+    
     protected final String TEXTO = COMILLA + "%s" + COMILLA;
     protected final String ASIGNACION = "%s" + IGUAL + "%s";
 
@@ -141,6 +142,7 @@ public abstract class Dao<T> {
             String datos[] = buscarVarios(todos(), condicion).get(0);
             return generarModelo(datos);
         } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -190,6 +192,28 @@ public abstract class Dao<T> {
      */
     public String setTexto(String valor) {
         return String.format(TEXTO, valor);
+    }
+    
+    /**
+     *  Método que evalúa si un campo fue 
+     * @param campo
+     * @return
+     */
+    public String valorPorDefecto(String campo){
+        return ((campo == null || campo.isBlank())? DEFAULT : setTexto(campo));
+    }
+    
+    /**
+     *
+     * @param campo
+     * @return
+     */
+    public String valorPorDefecto(Number campo){
+        return ((campo.intValue()<=0)? DEFAULT : ""+campo);
+    }
+
+    public Connection getConnection(){
+        return controladorDb.getConnection();
     }
 }
 

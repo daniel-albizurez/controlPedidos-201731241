@@ -23,6 +23,11 @@ import vista.VistaTienda;
  */
 public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTienda> {
 
+    private final String TIEMPO_INCORRECTO = "Ingrese valores correcto de tiempo";
+
+    private JTextField horaFin;
+    private JTextField horaInicio;
+
     public ControladorTienda(Connection connection) {
         dao = new DaoTienda(connection);
 
@@ -34,15 +39,17 @@ public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTie
         (cancelar = this.vista.jBtnCancelar).addActionListener(this);
         this.vista.setVisible(true);
 
-        this.vista.jTxtHorarioFin.addActionListener(this);
-        this.vista.jTxtHorarioInicio.addActionListener(this);
+        (horaFin = this.vista.jTxtHorarioFin).addActionListener(this);
+        (horaInicio = this.vista.jTxtHorarioInicio).addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent ev) {
         mensaje = "";
         if (ev.getSource() == agregar) {
-            mensaje = agregar(construirModelo());
+            if (revisaHora(horaFin)&& revisaHora(horaInicio)) {
+                mensaje = agregar(construirModelo());
+            }
         } else if (ev.getSource() == buscar) {
             String codigo = vista.jTxtCodigo.getText();
             if (!codigo.isBlank()) {
@@ -59,7 +66,11 @@ public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTie
             }
         } else if (ev.getSource() == modificar) {
             if (modelo.getCodigo().equals(vista.jTxtCodigo.getText())) {
-                mensaje = modificar(construirModelo());
+                if (revisaHora(horaFin) && revisaHora(horaInicio)) {
+                    mensaje = modificar(construirModelo());
+                } else {
+                    mensaje = TIEMPO_INCORRECTO;
+                }
             } else {
                 mensaje = ERROR;
                 vista.jTxtCodigo.setText(modelo.getCodigo());
@@ -74,30 +85,9 @@ public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTie
             super.actionPerformed(ev);
         }
 
-        if (ev.getSource() == vista.jTxtHorarioInicio
-                || ev.getSource() == vista.jTxtHorarioFin) {
-            JTextField editado = (JTextField) ev.getSource();
-            String tiempo = editado.getText();
-            if (tiempo.matches("\\d\\d:\\d\\d")) {
-                try {
-                    int hora = Integer.parseInt(tiempo.substring(0, 2));
-                    int minutos = Integer.parseInt(tiempo.substring(3, 5));
-                    if (hora < 24 && hora > 0
-                            && minutos >= 0 && minutos < 60) {
-                        mensaje = "";
-
-                    } else {
-                        mensaje = "Ingrese valores correcto de tiempo";
-                        editado.setText("10:00");
-                    }
-                } catch (Exception e) {
-                    mensaje = "Ingrese valores correcto de tiempo";
-                    editado.setText("10:00");
-                }
-            } else {
-                mensaje = "Ingrese valores correcto de tiempo";
-                editado.setText("10:00");
-            }
+        if (ev.getSource() == horaInicio
+                || ev.getSource() == horaFin) {
+            revisaHora((JTextField) ev.getSource());
         }
 
         if (!mensaje.isBlank()) {
@@ -115,7 +105,7 @@ public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTie
         t.setTelefono2(vista.jTxtTel2.getText());
         t.setEmail(vista.jTxtEmail.getText());
         String horario = vista.jTxtHorarioInicio.getText()
-                + " - " + vista.jTxtHorarioFin.getText();
+                + "-" + vista.jTxtHorarioFin.getText();
         t.setHorario(horario);
         return t;
     }
@@ -145,6 +135,7 @@ public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTie
         super.interfazModificar();
     }
 
+    @Override
     public void limpiar() {
         super.limpiar();
         this.vista.jTxtCodigo.setText("");
@@ -156,5 +147,23 @@ public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTie
         this.vista.jTxtEmail.setText("0");
         this.vista.jTxtHorarioInicio.setText("10:00");
         this.vista.jTxtHorarioFin.setText("18:00");
+    }
+
+    public Boolean revisaHora(JTextField jTxtHora) {
+        String tiempo = jTxtHora.getText();
+        if (tiempo.matches("\\d\\d:\\d\\d")) {
+            try {
+                int hora = Integer.parseInt(tiempo.substring(0, 2));
+                int minutos = Integer.parseInt(tiempo.substring(3, 5));
+                if (hora < 24 && hora > 0
+                        && minutos >= 0 && minutos < 60) {
+                    return true;
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+        jTxtHora.setText("10:00");
+        return false;
+
     }
 }

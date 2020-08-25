@@ -17,21 +17,34 @@ import javax.swing.table.TableRowSorter;
  * @author DANIEL
  */
 public class ControladorTabla {
-    
-    public static void filtrar(JTable reporte,String  busqueda, int ... columns){
-        busqueda = (busqueda.isBlank()) ? busqueda:String.format("^%s$", busqueda);
-        if (reporte.getRowSorter() != null)
-       ((TableRowSorter<TableModel>) reporte.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda,columns));
+
+    public static void filtrar(JTable tabla, String busqueda, int... columns) {
+        busqueda = (busqueda.isBlank()) ? busqueda : String.format("^%s$", busqueda);
+        if (tabla.getRowSorter() != null) {
+            ((TableRowSorter<TableModel>) tabla.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda, columns));
+        }
     }
-    
-    public static void llenar(JTable reporte,String[] columnas, ArrayList<String[]> filas){
+
+    public static void llenar(JTable tabla, String[] columnas, ArrayList<String[]> filas) {
         DefaultTableModel modelo = new DefaultTableModel();
-        for (String columna : columnas) {
-            modelo.addColumn(columna);
-        }
+        tabla.setModel(modelo);
+        agregarColumnas(tabla, columnas);
         for (String[] fila : filas) {
-            modelo.addRow(fila);
+            agregarFila(tabla, fila);
         }
-        reporte.setModel(modelo); 
+    }
+
+    public static void vaciar(JTable tabla) {
+        tabla.setModel(new DefaultTableModel());
+    }
+
+    public static void agregarFila(JTable tabla, String[] fila) {
+        ((DefaultTableModel) tabla.getModel()).addRow(fila);
+    }
+
+    public static void agregarColumnas(JTable tabla, String[] columnas) {
+        for (String columna : columnas) {
+            ((DefaultTableModel) tabla.getModel()).addColumn(columna);
+        }
     }
 }
