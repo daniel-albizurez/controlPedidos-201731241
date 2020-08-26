@@ -29,6 +29,7 @@ public class ControladorApp implements ActionListener{
     public ControladorApp(Connection connection, Tienda actual) {
         vista = new App();
         this.connection = connection;
+        this.actual = actual;
         
         vista.jBtnClientes.addActionListener(this);
         vista.jBtnPedido.addActionListener(this);
