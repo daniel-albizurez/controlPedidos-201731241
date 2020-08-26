@@ -36,7 +36,7 @@ public class ReportePedidosEnRuta extends javax.swing.JFrame {
         jBtnBuscar = new javax.swing.JButton();
         jTxtFiltroPedido = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Pedidos");
 

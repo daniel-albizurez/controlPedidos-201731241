@@ -31,7 +31,7 @@ public class ReporteExistencias extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTblExistencias = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTblExistencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

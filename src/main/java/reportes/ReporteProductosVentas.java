@@ -40,7 +40,7 @@ public class ReporteProductosVentas extends javax.swing.JFrame {
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jTxtFiltroTienda = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
