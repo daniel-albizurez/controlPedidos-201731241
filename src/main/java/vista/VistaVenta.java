@@ -50,7 +50,7 @@ public class VistaVenta extends javax.swing.JFrame {
         jBtnCancelar = new javax.swing.JButton();
         jSpinCantidad = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Registrar Venta");
 

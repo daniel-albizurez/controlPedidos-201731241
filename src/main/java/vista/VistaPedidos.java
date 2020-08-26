@@ -55,7 +55,7 @@ public class VistaPedidos extends javax.swing.JFrame {
         jBtnSeleccionarTienda = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTblDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,6 +94,7 @@ public class VistaPedidos extends javax.swing.JFrame {
         jBtnAgregarProducto.setText("Agregar");
 
         jBtnRegistrar.setText("Registrar Pedido");
+        jBtnRegistrar.setEnabled(false);
 
         jBtnBuscarCliente.setText("Buscar");
 
@@ -101,7 +102,7 @@ public class VistaPedidos extends javax.swing.JFrame {
 
         jLblPrecio.setText("Precio");
 
-        jTxtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-M-d"))));
+        jTxtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-mM-d"))));
 
         jLabel10.setText("En formato yyyy-m-dd");
 

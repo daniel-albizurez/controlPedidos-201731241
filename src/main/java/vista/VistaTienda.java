@@ -51,7 +51,7 @@ public class VistaTienda extends javax.swing.JFrame {
         jTxtHorarioInicio = new javax.swing.JTextField();
         jTxtHorarioFin = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jBtnBuscar.setText("Buscar");
 

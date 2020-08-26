@@ -41,7 +41,7 @@ public abstract class Controlador<M, V extends JFrame, R extends JFrame> impleme
     protected final String INGRESE_VALOR = "Por favor ingrese un %s";
     protected final String ERROR = "Ha ocurrido un error, por favor vuelva a intentarlo";
     protected final String MODIFICACION_EXITOSA = "La modificación de %s con %s ha sido exitosa";
-    protected final String MODIFICACION_FRACASADA = "No se ha podido modificar el cliente";
+    protected final String MODIFICACION_FRACASADA = "No se ha podido modificar el %s";
     protected final String ELIMINACION_EXITOSA = "%s eliminado exitosamente";
     protected final String ELIMINACION_FRACASADA = "No se ha podido eliminar el %s";
     protected final String CAMPOS_OBLIGATORIOS = "Por favor llene los campos obligatorios";

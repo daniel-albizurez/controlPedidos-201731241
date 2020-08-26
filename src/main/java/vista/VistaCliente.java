@@ -49,7 +49,7 @@ public class VistaCliente extends javax.swing.JFrame {
         jBtnVerClientes = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jBtnBuscar.setText("Buscar");
 

@@ -119,7 +119,7 @@ public class ControladorTienda extends Controlador<Tienda, VistaTienda, VistaTie
         vista.jTxtTel2.setText(modelo.getTelefono2());
         vista.jTxtEmail.setText(modelo.getEmail());
         try {
-            String[] horario = modelo.getHorario().split(" - ");
+            String[] horario = modelo.getHorario().split("-");
             vista.jTxtHorarioInicio.setText(horario[0]);
             vista.jTxtHorarioFin.setText(horario[1]);
 

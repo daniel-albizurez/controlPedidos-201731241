@@ -9,13 +9,17 @@ import dao.Dao;
 import dao.DaoClientes;
 import dao.DaoPedido;
 import dao.DaoProducto;
+import dao.DaoTiempo;
 import dao.DaoTienda;
 import dao.DaoUbicacion;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
+import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -25,6 +29,7 @@ import modelo.Cliente;
 import modelo.Detalle;
 import modelo.Pedido;
 import modelo.Producto;
+import modelo.Tiempo;
 import modelo.Tienda;
 import modelo.Ubicacion;
 import reportes.ReporteExistencias;
@@ -43,13 +48,14 @@ public class ControladorPedido extends Controlador<Pedido, VistaPedidos, Reporte
     private Cliente cliente;
     private Ubicacion ubicacion;
     private ArrayList<Ubicacion> inventarios = new ArrayList<>();
-    
+
     private double total = 0;
     private double anticipo = 0;
 
     private DaoUbicacion daoUbicacion;
     private DaoClientes daoClientes;
     private DaoProducto daoProducto;
+    private DaoTiempo daoTiempo;
 
     private ControladorClientes controladorCliente;
 
@@ -62,8 +68,9 @@ public class ControladorPedido extends Controlador<Pedido, VistaPedidos, Reporte
         daoUbicacion = new DaoUbicacion(connection);
         daoClientes = new DaoClientes(connection);
         daoProducto = new DaoProducto(connection);
+        daoTiempo = new DaoTiempo(connection);
 
-        vista = new VistaPedidos();
+        this.vista = new VistaPedidos();
         (agregar = this.vista.jBtnRegistrar).addActionListener(this);
         (buscar = this.vista.jBtnBuscarCliente).addActionListener(this);
         (cancelar = this.vista.jBtnCancelar).addActionListener(this);
@@ -135,7 +142,7 @@ public class ControladorPedido extends Controlador<Pedido, VistaPedidos, Reporte
             ControladorTabla.agregarFila(tablaDetalle, new String[]{producto.getCodigo(), producto.getNombre(), "" + valor});
 
             total += valor;
-            anticipo = total*25/100;
+            anticipo = total * 25 / 100;
             vista.jTxtTotal.setText(total + "");
             vista.jTxtAnticipo.setText(anticipo + "");
             construirUbicacion();
@@ -145,9 +152,23 @@ public class ControladorPedido extends Controlador<Pedido, VistaPedidos, Reporte
             vista.jCmbProductos.removeItem(producto.getCodigo());
 
         } else if (ev.getSource() == agregar) {
+            Tiempo tiempoEnvio = new Tiempo(vista.jTxtTiendaOrigen.getText(), actual.getCodigo(), 0);
+            tiempoEnvio = daoTiempo.seleccionar(tiempoEnvio);
+            if (tiempoEnvio == null) {
+                tiempoEnvio = new Tiempo(actual.getCodigo(), vista.jTxtTiendaOrigen.getText(), 0);
+                tiempoEnvio = daoTiempo.seleccionar(tiempoEnvio);
+            }
             modelo = construirModelo();
+            String fecha = vista.jTxtFecha.getText();
+            LocalDate fechaEstimada = LocalDate.parse(fecha);
+            modelo.setFechaEnTienda(
+                    fechaEstimada.getYear() + "-"
+                    + fechaEstimada.getMonthValue() + "-"
+                    + (fechaEstimada.getDayOfMonth() + tiempoEnvio.getDias()) % 30
+            );
+//            System.out.println(modelo.getFechaEnTienda());
 
-            if (((DaoPedido)dao).agregar(modelo, detalles)) {
+            if (((DaoPedido) dao).agregar(modelo, detalles)) {
                 for (Ubicacion inventario : inventarios) {
                     daoUbicacion.modificar(ubicacion);
                 }
@@ -175,7 +196,7 @@ public class ControladorPedido extends Controlador<Pedido, VistaPedidos, Reporte
     public void productos(String codigoTienda) {
         vista.jCmbProductos.removeAllItems();
         ArrayList<String[]> codigosProductos = daoUbicacion.buscarVarios(
-                DaoUbicacion.PRODUCTO, dao.asignacion(DaoUbicacion.TIENDA, codigoTienda)
+                DaoUbicacion.PRODUCTO, dao.asignacion(DaoUbicacion.TIENDA, dao.setTexto(codigoTienda))
                 + Dao.AND + DaoUbicacion.CANTIDAD + ">0"
         );
         ArrayList<String> productos = new ArrayList<>();
@@ -246,6 +267,7 @@ public class ControladorPedido extends Controlador<Pedido, VistaPedidos, Reporte
         vista.jCmbProductos.removeAllItems();
         total = 0;
         vista.jTxtTotal.setText(total + "");
+        vista.jTxtAnticipo.setText(total + "");
         ControladorTabla.vaciar(tablaDetalle);
         ControladorTabla.agregarColumnas(tablaDetalle, new String[]{"Codigo", "Nombre", "Precio"});
         detalles.clear();

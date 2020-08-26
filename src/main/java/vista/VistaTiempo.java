@@ -43,7 +43,7 @@ public class VistaTiempo extends javax.swing.JFrame {
         jLblTienda1 = new javax.swing.JLabel();
         jLblTienda2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Tiempo de envío entre tiendas");
 

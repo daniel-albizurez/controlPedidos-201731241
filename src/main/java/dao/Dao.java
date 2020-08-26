@@ -147,6 +147,26 @@ public abstract class Dao<T> {
         }
     }
     
+    public T seleccionar(String[] camposCondicion, String[] valoresCondicion){
+        String condicion = "";
+        for (int i = 0; i < camposCondicion.length; i++) {
+            String valor = valoresCondicion[i];
+            String campo = camposCondicion[i];
+            if (i>0) condicion += AND;
+            condicion += String.format(ASIGNACION,
+                campo.replace(IGUAL, ""),
+                setTexto(valor.replace(IGUAL, "")));
+        }
+        try {
+            String datos[] = buscarVarios(todos(), condicion).get(0);
+            return generarModelo(datos);
+        } catch (IndexOutOfBoundsException e) {
+//            e.printStackTrace();
+            return null;
+        }
+
+    }
+    
     /**
      * Método que permite actualizar una tupla en la BD
      * @param modificado Una instancia del objeto correspondiente a la tupla
