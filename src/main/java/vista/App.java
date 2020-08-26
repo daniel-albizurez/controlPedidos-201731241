@@ -36,6 +36,7 @@ public class App extends javax.swing.JFrame {
         jBtnPedido = new javax.swing.JButton();
         jBtnVenta = new javax.swing.JButton();
         jBtnReportes = new javax.swing.JButton();
+        jBtnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +55,8 @@ public class App extends javax.swing.JFrame {
         jBtnVenta.setText("Venta");
 
         jBtnReportes.setText("Reportes");
+
+        jBtnActualizar.setText("Actualizar Pedido");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,10 +79,11 @@ public class App extends javax.swing.JFrame {
                                 .addGap(63, 63, 63)
                                 .addComponent(jBtnTienda))
                             .addComponent(jBtnReportes))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBtnProductos)
-                            .addComponent(jBtnVenta))
+                            .addComponent(jBtnVenta)
+                            .addComponent(jBtnActualizar))
                         .addGap(44, 44, 44))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -98,7 +102,9 @@ public class App extends javax.swing.JFrame {
                     .addComponent(jBtnPedido)
                     .addComponent(jBtnVenta))
                 .addGap(56, 56, 56)
-                .addComponent(jBtnReportes)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnReportes)
+                    .addComponent(jBtnActualizar))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
@@ -152,6 +158,7 @@ public class App extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton jBtnActualizar;
     public javax.swing.JButton jBtnClientes;
     public javax.swing.JButton jBtnPedido;
     public javax.swing.JButton jBtnProductos;

@@ -59,10 +59,11 @@
                               </Group>
                               <Component id="jBtnReportes" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="76" max="32767" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jBtnProductos" min="-2" max="-2" attributes="0"/>
                               <Component id="jBtnVenta" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnActualizar" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
@@ -88,7 +89,10 @@
                       <Component id="jBtnVenta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                  <Component id="jBtnReportes" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBtnReportes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="83" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -151,6 +155,14 @@
         <Component class="javax.swing.JButton" name="jBtnReportes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reportes"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBtnActualizar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar Pedido"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

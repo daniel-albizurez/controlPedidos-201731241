@@ -38,6 +38,7 @@ public class ControladorApp implements ActionListener{
         vista.jBtnTiempo.addActionListener(this);
         vista.jBtnTienda.addActionListener(this);
         vista.jBtnVenta.addActionListener(this);
+        vista.jBtnActualizar.addActionListener(this);
         
         vista.setVisible(true);
         
@@ -51,6 +52,8 @@ public class ControladorApp implements ActionListener{
         } else if (ev.getSource() == vista.jBtnPedido) {
             ControladorPedido pedido = new ControladorPedido(connection, actual);
             
+        } else if (ev.getSource() == vista.jBtnActualizar) {
+            ControladorModificacionPedido actualizarPedidos = new ControladorModificacionPedido(connection, actual);
         } else if (ev.getSource() == vista.jBtnProductos) {
             ControladorProductos producto = new ControladorProductos(connection, actual);
         } else if (ev.getSource() == vista.jBtnTiempo) {
