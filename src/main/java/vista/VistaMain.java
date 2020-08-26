@@ -110,7 +110,7 @@ public class VistaMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jBtnEntrar;
-    private javax.swing.JComboBox<String> jCmbTiendas;
+    public javax.swing.JComboBox<String> jCmbTiendas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
