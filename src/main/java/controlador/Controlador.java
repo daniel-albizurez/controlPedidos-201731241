@@ -35,17 +35,17 @@ public abstract class Controlador<M, V extends JFrame, R extends JFrame> impleme
 
     protected String mensaje = "";
 
-    protected static final String INSERCION_CORRECTA = "Se ha ingresado el %s con %s exitosamente";
-    protected static final String INSERCION_INCORRECTA = "El %s con %s ya existe";
-    protected static final String NO_EXISTE = "No existe el %s con %s";
+    public static final String INSERCION_CORRECTA = "Se ha ingresado el %s con %s exitosamente";
+    public static final String INSERCION_INCORRECTA = "El %s con %s ya existe";
+    public static final String NO_EXISTE = "No existe el %s con %s";
     public static  final String INGRESE_VALOR = "Por favor ingrese un %s";
-    protected static final String ERROR = "Ha ocurrido un error, por favor vuelva a intentarlo";
-    protected static final String MODIFICACION_EXITOSA = "La modificación de %s con %s ha sido exitosa";
-    protected static final String MODIFICACION_FRACASADA = "No se ha podido modificar el %s";
-    protected static final String ELIMINACION_EXITOSA = "%s eliminado exitosamente";
-    protected static final String ELIMINACION_FRACASADA = "No se ha podido eliminar el %s";
-    protected static final String CAMPOS_OBLIGATORIOS = "Por favor llene los campos obligatorios";
-    protected static final String NO_BORRAR = "Por favor no borre los campos obligatorios";
+    public static final String ERROR = "Ha ocurrido un error, por favor vuelva a intentarlo";
+    public static final String MODIFICACION_EXITOSA = "La modificación de %s con %s ha sido exitosa";
+    public static final String MODIFICACION_FRACASADA = "No se ha podido modificar el %s";
+    public static final String ELIMINACION_EXITOSA = "%s eliminado exitosamente";
+    public static final String ELIMINACION_FRACASADA = "No se ha podido eliminar el %s";
+    public static final String CAMPOS_OBLIGATORIOS = "Por favor llene los campos obligatorios";
+    public static final String NO_BORRAR = "Por favor no borre los campos obligatorios";
 
     public abstract M construirModelo();
 

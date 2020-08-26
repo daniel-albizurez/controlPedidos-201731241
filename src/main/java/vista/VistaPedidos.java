@@ -102,7 +102,7 @@ public class VistaPedidos extends javax.swing.JFrame {
 
         jLblPrecio.setText("Precio");
 
-        jTxtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-mM-d"))));
+        jTxtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-d"))));
 
         jLabel10.setText("En formato yyyy-m-dd");
 

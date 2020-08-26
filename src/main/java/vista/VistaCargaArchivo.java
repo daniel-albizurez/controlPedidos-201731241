@@ -33,7 +33,7 @@ public class VistaCargaArchivo extends javax.swing.JFrame {
         jTxtIgnorados = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jBtnCargar.setText("Cargar Archivo");
 
