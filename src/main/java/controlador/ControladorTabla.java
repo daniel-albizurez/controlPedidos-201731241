@@ -20,9 +20,11 @@ public class ControladorTabla {
 
     public static void filtrar(JTable tabla, String busqueda, int... columns) {
         busqueda = (busqueda.isBlank()) ? busqueda : String.format("^%s$", busqueda);
-        if (tabla.getRowSorter() != null) {
-            ((TableRowSorter<TableModel>) tabla.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda, columns));
+
+        if (tabla.getRowSorter() == null) {
+            tabla.setAutoCreateRowSorter(true);
         }
+        ((TableRowSorter<TableModel>) tabla.getRowSorter()).setRowFilter(RowFilter.regexFilter(busqueda, columns));
     }
 
     public static void llenar(JTable tabla, String[] columnas, ArrayList<String[]> filas) {
