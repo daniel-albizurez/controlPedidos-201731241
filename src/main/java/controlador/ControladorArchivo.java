@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -21,11 +22,13 @@ import vista.VistaCargaArchivo;
 public class ControladorArchivo implements ActionListener {
 
     private VistaCargaArchivo vista;
+    Connection connection;
 
-    public ControladorArchivo() {
+    public ControladorArchivo(Connection connection) {
         this.vista = new VistaCargaArchivo();
         this.vista.jBtnCargar.addActionListener(this);
         this.vista.setVisible(true);
+        this.connection = connection;
     }
 
     @Override
@@ -52,7 +55,7 @@ public class ControladorArchivo implements ActionListener {
             System.out.println(e.getMessage());;
         }
         for (String registro : registros) {
-            if (!ControladorRegistros.registrar(registro)) {
+            if (!ControladorRegistros.registrar(registro,connection)) {
                 this.vista.jTxtIgnorados.append(registro + "\n");
             }
         }
